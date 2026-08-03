@@ -1,0 +1,98 @@
+{
+  "project": "Paws & Pause",
+  "format": "16:9 reel",
+  "resolution": {"width": 1920, "height": 1080},
+  "target_duration_seconds": 52,
+  "fps": 30,
+  "design_system": {
+    "paper": "#F5E9D3",
+    "paper_2": "#EEDCB8",
+    "ink": "#3A2C22",
+    "teal": "#3E7C74",
+    "teal_deep": "#244C46",
+    "marigold": "#D98F2B",
+    "coral": "#D9705C",
+    "display_font": "Nunito",
+    "body_font": "Libre Baskerville"
+  },
+  "slides": [
+    {
+      "id": 1,
+      "filename": "slide1.html",
+      "title": "Paws & Pause",
+      "eyebrow": "Cozy Life Sim · Pitch Reel",
+      "layout": "title_hero",
+      "description": "Opening brand title card introducing Paws & Pause as a cozy life-sim about a child earning toward adopting a puppy — a short, low-stakes pause after work or school.",
+      "main_idea": "Introduce the game and its emotional promise.",
+      "bullets": ["Working title", "Single-player", "Course MVP"],
+      "visual": "Large brand title with paw-print mark, warm paper gradient, soft SVG paw constellation / town vignette.",
+      "narration": "Meet Paws and Pause — a cozy little game about a kid, a small town, and one very big dream: a puppy of their very own.",
+      "duration_seconds": 7
+    },
+    {
+      "id": 2,
+      "filename": "slide2.html",
+      "title": "A kid, a town, one big dream",
+      "eyebrow": "01 · The Premise",
+      "layout": "illustration_split",
+      "description": "Premise: puppies cost money, so the child works and saves; adoption starts the real care loop. Also establishes the game as a calm, universally welcoming pause after work or school.",
+      "main_idea": "Earn money first; adoption is the beginning — built as a calm pause for everyone.",
+      "bullets": ["Work a part-time job", "Save for adoption", "A calm pause for every gender, every age"],
+      "visual": "Custom HTML/CSS/SVG town illustration with shelter window and child silhouette — no stock photos.",
+      "narration": "Puppies aren't free. So our kid works, saves, and waits. When adoption day comes — that's where the real game begins. Built for after-work calm — for everyone.",
+      "duration_seconds": 9
+    },
+    {
+      "id": 3,
+      "filename": "slide3.html",
+      "title": "The daily rhythm",
+      "eyebrow": "02 · Core Loop",
+      "layout": "loop_grid",
+      "description": "Core gameplay loop as four numbered beats: explore/work, earn, care/decorate, rest/unlock.",
+      "main_idea": "One gentle daily loop: earn, spend, care, rest, repeat.",
+      "bullets": ["Wake & explore", "Jobs & mini-games", "Care & decorate", "Rest & unlock"],
+      "visual": "Numbered loop cards in a clean grid with SVG icons.",
+      "narration": "Every day follows the same gentle rhythm: wake up, explore, work a job, play a mini-game, care for the puppy, decorate, then rest — and do it again tomorrow.",
+      "duration_seconds": 8
+    },
+    {
+      "id": 4,
+      "filename": "slide4.html",
+      "title": "Adopt. Care. Feel.",
+      "eyebrow": "03 · Heart of the Game",
+      "layout": "feature_cards",
+      "description": "Shelter visits and breed picker, daily care, visible mood faces, and Bond that only grows — plus Mii-style customization for child and puppy.",
+      "main_idea": "A real breed choice, daily care, visible feelings, and looks you grow together.",
+      "bullets": ["Pick a breed at the shelter", "Feed, walk, play — see the mood face", "Mii-style looks for kid and puppy"],
+      "visual": "Three feature cards with SVG icons for breed picker, mood face, and customization.",
+      "narration": "Pick your puppy by breed, then care for it daily. Watch its mood on its face — Happiness rises and dips, but Bond only grows. Grow your look together with a Mii-style creator.",
+      "duration_seconds": 9
+    },
+    {
+      "id": 5,
+      "filename": "slide5.html",
+      "title": "Four ways to play",
+      "eyebrow": "04 · Mini-Games & MVP",
+      "layout": "feature_grid",
+      "description": "Four mini-games — café cooking, lake fishing with Fish Cards, Go-Kart Stadium, arcade platformer — plus a feasible course MVP that proves the full loop.",
+      "main_idea": "Café, fishing, kart racing, arcade — and a full playable course MVP.",
+      "bullets": ["Café: Overcooked-style orders", "Lake: fish & Fish Cards", "Stadium: 3-lap kart race", "Arcade: no-timer hop-and-collect"],
+      "visual": "2x2 grid of feature cards with SVG icons (cup, fish, kart, joystick), plus a slim MVP checklist strip.",
+      "narration": "Cook at the café. Fish and collect Fish Cards. Race at the Go-Kart Stadium. Hop through the arcade. For the course MVP: an open town, four mini-games, and the full adopt-and-care loop.",
+      "duration_seconds": 9
+    },
+    {
+      "id": 6,
+      "filename": "slide6.html",
+      "title": "A home. A dog. A little pause.",
+      "eyebrow": "05 · Closing",
+      "layout": "closing_mark",
+      "description": "Closing emotional thesis with centered paw mark, reinforcing the game as a relaxing daily pause.",
+      "main_idea": "End on the thesis: a small, calm world to come home to.",
+      "bullets": ["Earn it honestly", "Care for it daily", "Let it be your pause"],
+      "visual": "Centered paw-print mark with warm fade and short closing line.",
+      "narration": "A home. A dog. A little pause in your day. This is Paws and Pause.",
+      "duration_seconds": 6
+    }
+  ]
+}

@@ -1,0 +1,616 @@
+<title>Paws & Pause — Game Concept Deck</title>
+<meta name="description" content="Slide deck: a cozy, heartwarming life-sim about a child earning, adopting, and caring for a puppy — built to help everyone unwind.">
+<style>
+  :root{
+    --paper: #F5E9D3;
+    --paper-2: #EEDCB8;
+    --paper-3: #E9D2A4;
+    --ink: #3A2C22;
+    --ink-soft: #6E5C49;
+    --ink-faint: #8C7A66;
+    --teal: #3E7C74;
+    --teal-deep: #244C46;
+    --marigold: #D98F2B;
+    --coral: #D9705C;
+    --line: rgba(58,44,34,0.16);
+    --line-strong: rgba(58,44,34,0.28);
+    --shadow: 0 18px 40px -22px rgba(42,30,18,0.45);
+
+    --display: ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN", "Segoe UI Rounded", "Nunito", sans-serif;
+    --body: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    overflow-x: hidden;
+  }
+  ::selection{ background: var(--marigold); color: var(--teal-deep); }
+
+  .deck{
+    height: 100svh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  .slide{
+    position: relative;
+    min-height: 100svh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(2rem, 6vw, 5rem);
+    border-bottom: 1px dashed var(--line-strong);
+    background:
+      radial-gradient(circle at 8% 12%, var(--paper-2) 0%, transparent 40%),
+      radial-gradient(circle at 92% 88%, var(--paper-3) 0%, transparent 45%),
+      var(--paper);
+  }
+  .slide-inner{
+    width: 100%;
+    max-width: 880px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .eyebrow::before{
+    content: "";
+    width: 22px; height: 2px;
+    background: var(--marigold);
+    display: inline-block;
+    border-radius: 2px;
+  }
+
+  h1.title{
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 1.02;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  h2.slide-title{
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+    line-height: 1.08;
+    margin: 0 0 0.15rem;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .subtitle{
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    color: var(--teal-deep);
+    margin: 0;
+  }
+  p.lede{
+    font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+    line-height: 1.62;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  .badge-row{ display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:0.4rem; }
+  .badge{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 100px;
+    color: var(--ink-soft);
+    background: rgba(255,255,255,0.35);
+  }
+
+  .card-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+    margin-top: 0.6rem;
+  }
+  .card{
+    background: rgba(255,255,255,0.42);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.2rem 1.3rem;
+    box-shadow: var(--shadow);
+  }
+  .card h3{
+    font-family: var(--display);
+    font-size: 1.05rem;
+    margin: 0.5rem 0 0.35rem;
+    color: var(--teal-deep);
+  }
+  .card p{
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .icon{
+    width: 34px; height: 34px;
+    display: block;
+  }
+
+  ul.plain{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.55rem; }
+  ul.plain li{
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    padding-left: 1.4rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  ul.plain li::before{
+    content: "";
+    position: absolute; left: 0; top: 0.55em;
+    width: 8px; height: 8px;
+    background: var(--coral);
+    border-radius: 50%;
+  }
+  ul.plain li b{ color: var(--ink); }
+
+  .loop-wrap{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+    margin-top: 0.6rem;
+  }
+  .loop-step{
+    background: rgba(255,255,255,0.42);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 0.95rem 1.05rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+  .loop-num{
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--paper);
+    background: var(--teal);
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .loop-step span{ font-size: 0.95rem; color: var(--ink); line-height: 1.35; }
+
+  table.scope{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.6rem;
+    font-size: 0.98rem;
+  }
+  table.scope th{
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border-bottom: 1px solid var(--line-strong);
+    padding: 0.5rem 0.6rem;
+  }
+  table.scope td{
+    padding: 0.6rem 0.6rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  table.scope tr td:last-child{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .in{ color: var(--teal-deep); }
+  .post{ color: var(--coral); }
+
+  .paw-divider{
+    display:flex; gap:0.5rem; align-items:center; opacity:0.55; margin-top:0.2rem;
+  }
+  .paw-divider svg{ width:16px; height:16px; }
+
+  .closer{
+    text-align: center;
+    align-items: center;
+  }
+  .closer .slide-inner{ align-items:center; text-align:center; }
+
+  /* nav */
+  .dots{
+    position: fixed;
+    right: clamp(0.8rem, 2vw, 1.6rem);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    z-index: 10;
+  }
+  .dot{
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid var(--line-strong);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  }
+  .dot:hover{ transform: scale(1.25); }
+  .dot.active{ background: var(--teal); border-color: var(--teal); }
+  .dot:focus-visible{ outline: 2px solid var(--marigold); outline-offset: 3px; }
+
+  .counter{
+    position: fixed;
+    left: clamp(1rem, 2.5vw, 2rem);
+    bottom: clamp(1rem, 2.5vw, 2rem);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-faint);
+    z-index: 10;
+    background: rgba(245,233,211,0.75);
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+  }
+
+  .brand-mark{
+    position: fixed;
+    left: clamp(1rem, 2.5vw, 2rem);
+    top: clamp(1rem, 2.5vw, 2rem);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    z-index: 10;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .brand-mark svg{ width: 16px; height: 16px; }
+
+  @media (max-width: 700px){
+    .loop-wrap{ grid-template-columns: 1fr 1fr; }
+    .dots{ display:none; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .deck{ scroll-behavior: auto; }
+  }
+</style>
+
+<div class="brand-mark">
+  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="15" r="5.2" fill="#D9705C"/><circle cx="5.5" cy="8.5" r="2.4" fill="#D9705C"/><circle cx="18.5" cy="8.5" r="2.4" fill="#D9705C"/><circle cx="8.3" cy="4.6" r="2.1" fill="#D9705C"/><circle cx="15.7" cy="4.6" r="2.1" fill="#D9705C"/></svg>
+  Paws &amp; Pause
+</div>
+<div class="counter" id="counter">01 / 18</div>
+<nav class="dots" id="dots" aria-label="Slide navigation"></nav>
+
+<div class="deck" id="deck">
+
+  <!-- 1. Title -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">Game Concept Pitch · Cozy Life Sim</div>
+      <h1 class="title">Paws &amp; Pause</h1>
+      <p class="subtitle">A small, warm world to unwind in — earn it, adopt it, love it.</p>
+      <div class="badge-row">
+        <span class="badge">Working title</span>
+        <span class="badge">Single-player</span>
+        <span class="badge">Course MVP</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Story -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">01 · The Premise</div>
+      <h2 class="slide-title">A kid, a town, and one big dream</h2>
+      <p class="lede">You play a child in a small, friendly town whose biggest wish is to adopt a puppy. Puppies aren't free — adoption fees, food, toys, and supplies all cost money. So you work, save, and wait, and when the day finally comes, the story doesn't end at adoption. It begins.</p>
+      <p class="lede" style="margin-top:-0.3rem;"><b style="color:var(--ink)">The real goal:</b> not just getting a dog — building a happy little life together.</p>
+    </div>
+  </section>
+
+  <!-- 3. Purpose -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">02 · Why We're Building This</div>
+      <h2 class="slide-title">A pause button, disguised as a game</h2>
+      <p class="lede">Paws &amp; Pause exists for the twenty minutes after work or after school — when you want to unwind, not compete. There's a whole small world here: your own room, your own look, and a pet who's happy to just see you.</p>
+      <p class="lede" style="margin-top:-0.3rem;">No fail states, no leaderboards, nobody to lose to. Just a gentle, heartwarming place that's built for everyone — every gender, every age.</p>
+    </div>
+  </section>
+
+  <!-- 4. Audience -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">03 · Who It's For</div>
+      <h2 class="slide-title">Built for absolutely anyone</h2>
+      <div class="card-grid">
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 10L12 4l8 6v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9z" stroke="#3E7C74" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <h3>Anyone winding down</h3>
+          <p>After work, after school, after a long day — low-pressure sessions with no fail states.</p>
+        </div>
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#3E7C74" stroke-width="1.6"/><path d="M12 8v4l3 2" stroke="#3E7C74" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <h3>Cozy-game fans</h3>
+          <p>The Stardew Valley / Animal Crossing crowd — loops, decor, and gentle progress.</p>
+        </div>
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-9.3-8.9C1.2 8 2.7 5 6 5c2 0 3.3 1.1 4 2.1C10.7 6.1 12 5 14 5c3.3 0 4.8 3 3.3 6.1C15 15.6 12 20 12 20z" stroke="#D9705C" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <h3>Animal lovers, every age</h3>
+          <p>Kids, adults, anyone who's ever wanted a pet — every gender, every generation welcome.</p>
+        </div>
+      </div>
+      <div class="badge-row" style="margin-top:0.9rem;">
+        <span class="badge">Stardew Valley</span>
+        <span class="badge">Animal Crossing</span>
+        <span class="badge">Little Kitty, Big City</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Core Loop -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">04 · The Daily Rhythm</div>
+      <h2 class="slide-title">The core gameplay loop</h2>
+      <div class="loop-wrap">
+        <div class="loop-step"><div class="loop-num">1</div><span>Wake up, full energy</span></div>
+        <div class="loop-step"><div class="loop-num">2</div><span>Explore the town</span></div>
+        <div class="loop-step"><div class="loop-num">3</div><span>Work a part-time job</span></div>
+        <div class="loop-step"><div class="loop-num">4</div><span>Play a mini-game</span></div>
+        <div class="loop-step"><div class="loop-num">5</div><span>Shop &amp; save toward the puppy</span></div>
+        <div class="loop-step"><div class="loop-num">6</div><span>Care for the puppy daily</span></div>
+        <div class="loop-step"><div class="loop-num">7</div><span>Decorate room &amp; dog space</span></div>
+        <div class="loop-step"><div class="loop-num">8</div><span>Rest when energy runs out</span></div>
+        <div class="loop-step"><div class="loop-num">9</div><span>Repeat — unlock more</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Jobs -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">05 · Feature</div>
+      <h2 class="slide-title">Part-time jobs — starting at the café</h2>
+      <p class="lede">The signature job is the café kitchen: orders come in as a short recipe ticket, and you tap the right stations — bread, veggie, grill, plate — in the right order before time's up. Overcooked-sized, cozy-paced.</p>
+      <ul class="plain">
+        <li><b>Café cooking</b> — read the ticket, hit the stations in order, earn tips</li>
+        <li><b>More jobs to come</b> — delivery, gardening, pet sitting as the town grows</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. Adoption -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">06 · Feature</div>
+      <h2 class="slide-title">Puppy adoption</h2>
+      <p class="lede">The long-term goal the whole loop points toward. Before the savings goal is hit, players can visit the shelter — see the puppies waiting, meet them through the window — turning the countdown into anticipation, not just a locked shop item. Then you pick your actual dog, by breed, from a real lineup at the shelter.</p>
+      <p class="lede">After adoption, spending shifts from "saving up" to "keeping up": food, toys, beds, clothes, accessories, decorations.</p>
+    </div>
+  </section>
+
+  <!-- 8. Care -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">07 · Feature</div>
+      <h2 class="slide-title">Puppy care, bonding &amp; feelings</h2>
+      <div class="card-grid">
+        <div class="card"><h3>Daily interactions</h3><p>Feed, walk, play, and pet — the rituals of caring for a dog, done right in your own home.</p></div>
+        <div class="card"><h3>Two-stat relationship</h3><p><b style="color:var(--ink)">Happiness</b> rises and gently decays day to day. <b style="color:var(--ink)">Bond</b> only ever grows — one bad day never erases the friendship.</p></div>
+        <div class="card"><h3>Real feelings</h3><p>Your puppy's mood — from ecstatic to sad — shows on its face, right there on the map. Care for it, and you can see it work.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Customization -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">08 · Feature</div>
+      <h2 class="slide-title">Make them really yours</h2>
+      <p class="lede">A proper, Mii-style character creator: skin tone, eye shape and color, mouth, hairstyle, and clothing silhouette — mix and match freely, no two kids need to look alike. The puppy gets the same care, with its own coat, breed, and collar color.</p>
+      <p class="lede" style="margin-top:-0.3rem;">It's the same philosophy on both ends of the leash — child and dog grow their look together, one matching pair building a life side by side.</p>
+    </div>
+  </section>
+
+  <!-- 10. Decoration -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">09 · Feature</div>
+      <h2 class="slide-title">Room decoration</h2>
+      <p class="lede">A major, purely positive progression system — decorate the child's bedroom and the puppy's own space using everything earned from jobs and mini-games.</p>
+      <div class="badge-row">
+        <span class="badge">Beds &amp; rugs</span>
+        <span class="badge">Wallpaper</span>
+        <span class="badge">Shelves &amp; lamps</span>
+        <span class="badge">Dog beds &amp; houses</span>
+        <span class="badge">Food bowls</span>
+        <span class="badge">Toy storage</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Energy -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">10 · Feature</div>
+      <h2 class="slide-title">The energy system</h2>
+      <p class="lede">Every activity — working, walking, playing, exploring, caring for the puppy — draws down an energy meter. Hit zero, and the child is too tired to keep working: it's time to head home and rest.</p>
+      <p class="lede" style="margin-top:-0.3rem;">Sleep restores energy for the next day, giving the whole game its daily heartbeat and rewarding a bit of planning over rushing everything at once.</p>
+    </div>
+  </section>
+
+  <!-- 12. Minigames -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">11 · Feature</div>
+      <h2 class="slide-title">Four ways to play</h2>
+      <div class="card-grid">
+        <div class="card"><h3>Fishing, at a real lake</h3><p>Cast, wait for the bite, reel in — and collect Fish Cards for every species you catch.</p></div>
+        <div class="card"><h3>Café cooking</h3><p>Read the ticket, hit the right stations in order, beat the clock for better tips.</p></div>
+        <div class="card"><h3>Go-Kart Stadium</h3><p>A real steering-and-drifting kart race: 3 laps, 2 rivals, boost pads, podium payouts.</p></div>
+        <div class="card"><h3>Arcade platformer</h3><p>A pure, no-timer hop-and-collect level — coins, stompable critters, a flag at the end.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. NPCs -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">12 · Feature</div>
+      <h2 class="slide-title">A town that talks back</h2>
+      <p class="lede">Villagers wander the town with their own faces and quiet routines. Walk up to one and start a conversation — a little wholesome small talk about the weather, the lake, or your dog's good manners. Nothing transactional, just company.</p>
+    </div>
+  </section>
+
+  <!-- 14. Town -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">13 · Feature</div>
+      <h2 class="slide-title">A warm, lively town</h2>
+      <div class="badge-row">
+        <span class="badge">Home</span><span class="badge">Café</span>
+        <span class="badge">Lake</span><span class="badge">Shelter</span>
+        <span class="badge">Go-Kart Stadium</span><span class="badge">Arcade</span>
+      </div>
+      <p class="lede" style="margin-top:0.6rem;">Buildings read by shape alone — a cottage, a café awning, a stadium arch — no floating labels. A minimap in the corner and a handful of wandering neighbors make the whole place feel lived-in, not staged.</p>
+    </div>
+  </section>
+
+  <!-- 15. Progression -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">14 · Feature</div>
+      <h2 class="slide-title">Progression</h2>
+      <ul class="plain">
+        <li>Better-paying jobs unlock over time</li>
+        <li>More furniture, clothing, and puppy accessories become available</li>
+        <li>New town areas and additional mini-games open up</li>
+        <li>Higher income opportunities as trust and skill grow</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 16. MVP Scope -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">15 · Project Scope</div>
+      <h2 class="slide-title">What the course MVP proves</h2>
+      <p class="lede">A feasible course project, not a commercial game — one small, explorable town and the complete earn-adopt-care loop, playable start to finish.</p>
+      <table class="scope">
+        <tr><th>Requirement</th><th>Status</th></tr>
+        <tr><td>Open-world town movement (walk, run, jump)</td><td class="in">Included</td></tr>
+        <tr><td>Energy system</td><td class="in">Included</td></tr>
+        <tr><td>Café cooking job</td><td class="in">Included</td></tr>
+        <tr><td>Fishing + Fish Card collection</td><td class="in">Included</td></tr>
+        <tr><td>Go-Kart Stadium race</td><td class="in">Included</td></tr>
+        <tr><td>Arcade platformer</td><td class="in">Included</td></tr>
+        <tr><td>Puppy adoption (breed picker)</td><td class="in">Included</td></tr>
+        <tr><td>Puppy care, mood &amp; bond</td><td class="in">Included</td></tr>
+        <tr><td>Mii-style child customization</td><td class="in">Included</td></tr>
+        <tr><td>Room decoration + shop</td><td class="in">Included</td></tr>
+        <tr><td>NPCs with dialogue</td><td class="in">Included</td></tr>
+        <tr><td>Save / load progress</td><td class="in">Included</td></tr>
+        <tr><td>Full town roster, extra pets, seasonal content</td><td class="post">Post-MVP</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 17. Future -->
+  <section class="slide">
+    <div class="slide-inner">
+      <div class="eyebrow">16 · What's Next</div>
+      <h2 class="slide-title">Beyond the MVP</h2>
+      <ul class="plain">
+        <li>Seasonal decor &amp; weather — rainy days call for a puppy raincoat</li>
+        <li>A second adoptable pet, reusing the same care systems</li>
+        <li>Photo mode — a memory book of the child and their dog</li>
+        <li>Deeper NPC friendship arcs at bond milestones</li>
+        <li>More arcade cabinets and stadium tracks</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 18. Closing -->
+  <section class="slide closer">
+    <div class="slide-inner">
+      <div class="paw-divider" style="justify-content:center;">
+        <svg viewBox="0 0 24 24" fill="#D9705C"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></svg>
+      </div>
+      <h2 class="slide-title">A home. A dog. A little pause.</h2>
+      <p class="lede">That's the whole game — earn it honestly, care for it daily, and let it be the calm part of your day. Thank you.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  const deck = document.getElementById('deck');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsWrap = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  const total = slides.length;
+
+  slides.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.className = 'dot' + (i === 0 ? ' active' : '');
+    b.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    b.addEventListener('click', () => slides[i].scrollIntoView({behavior:'smooth'}));
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function pad(n){ return n < 10 ? '0'+n : ''+n; }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const idx = slides.indexOf(e.target);
+        dots.forEach(d => d.classList.remove('active'));
+        dots[idx].classList.add('active');
+        counter.textContent = pad(idx+1) + ' / ' + pad(total);
+      }
+    });
+  }, { root: deck, threshold: 0.6 });
+  slides.forEach(s => io.observe(s));
+
+  deck.addEventListener('keydown', () => {});
+  document.addEventListener('keydown', (e) => {
+    const idx = dots.findIndex(d => d.classList.contains('active'));
+    if(['ArrowDown','PageDown',' '].includes(e.key)){
+      e.preventDefault();
+      slides[Math.min(idx+1, total-1)].scrollIntoView({behavior:'smooth'});
+    } else if(['ArrowUp','PageUp'].includes(e.key)){
+      e.preventDefault();
+      slides[Math.max(idx-1, 0)].scrollIntoView({behavior:'smooth'});
+    }
+  });
+})();
+</script>

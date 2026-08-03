@@ -1,0 +1,41 @@
+# Secrets
+.env
+.env.local
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Generated media (upload reel separately)
+reel.mp4
+output/
+audio/
+renders/
+*.mp3
+*.wav
+*.webm
+
+# Playwright
+playwright-report/
+test-results/
+
+# Misc
+*.log
+.cache/
+
+.mplconfig/

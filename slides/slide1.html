@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1920, height=1080" />
+  <title>Paws &amp; Pause — Cozy Life Sim</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Libre+Baskerville:wght@400;700&family=Nunito:wght@500;700;800&display=swap');
+    :root{--paper:#F5E9D3;--paper2:#EEDCB8;--ink:#3A2C22;--soft:#6E5C49;--faint:#8C7A66;--teal:#3E7C74;--deep:#244C46;--gold:#D98F2B;--coral:#D9705C;--display:"Nunito",ui-rounded,sans-serif;--body:"Libre Baskerville",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+    *{box-sizing:border-box}html,body{margin:0;width:1920px;height:1080px;overflow:hidden}body{color:var(--ink);background:radial-gradient(circle at 8% 8%,rgba(238,220,184,.95) 0,transparent 38%),radial-gradient(circle at 95% 92%,rgba(233,210,164,.8) 0,transparent 43%),linear-gradient(135deg,#F8EFD9 0%,var(--paper) 52%,#EAD7B0 100%)}
+    .slide{width:1920px;height:1080px;padding:88px 110px;position:relative}.brand{position:absolute;top:46px;left:110px;display:flex;align-items:center;gap:12px;font:700 24px var(--display);color:var(--soft)}.brand svg{filter:drop-shadow(0 3px 4px rgba(217,112,92,.18))}.footer-meta{position:absolute;right:110px;bottom:48px;font:500 16px var(--mono);color:rgba(140,122,102,.58)}.progress{position:absolute;left:110px;right:110px;bottom:56px;height:5px;background:rgba(58,44,34,.08);border-radius:999px;overflow:hidden}.progress i{display:block;width:16%;height:100%;border-radius:inherit;background:linear-gradient(90deg,rgba(62,124,116,.62),rgba(217,143,43,.58))}
+    .hero{height:100%;display:grid;grid-template-columns:.94fr 1.06fr;gap:58px;align-items:center;padding-bottom:20px}.copy{padding-top:12px}.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;color:var(--teal);font:600 21px var(--mono);letter-spacing:.15em;text-transform:uppercase}.eyebrow:before{content:"";width:38px;height:3px;border-radius:2px;background:var(--gold)}h1{margin:0;max-width:760px;font:800 126px/.92 var(--display);letter-spacing:-.045em}h1:after{content:"";display:block;width:138px;height:11px;margin-top:28px;border-radius:20px;background:var(--coral);transform:rotate(-2deg);opacity:.88}.subtitle{max-width:660px;margin:32px 0 0;color:var(--soft);font:400 31px/1.48 var(--body)}
+    .scene{position:relative;height:735px;margin-right:-48px;overflow:hidden;border-radius:48% 8% 10% 42%/12% 12% 12% 18%;background:linear-gradient(180deg,#D9EAE4 0%,#C2DCD4 55%,#E8C986 55.3%,#D5AF68 100%);box-shadow:0 28px 62px -38px rgba(42,30,18,.42)}.scene:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 68% 20%,rgba(255,250,222,.66),transparent 27%),linear-gradient(110deg,transparent 37%,rgba(255,255,255,.15) 37.3%,transparent 38%),radial-gradient(ellipse at 50% 55%,transparent 42%,rgba(58,44,34,.08) 100%)}.scene svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}.scene .trail{animation:drift 5s ease-in-out infinite}.scene .puppy{animation:lift 4s ease-in-out infinite;transform-origin:1110px 610px}.scene .halo{animation:breathe 4s ease-in-out infinite}@keyframes drift{50%{transform:translate(4px,-5px)}}@keyframes lift{50%{transform:translateY(-6px)}}@keyframes breathe{50%{opacity:.9;transform:scale(1.04)}}
+  </style>
+</head>
+<body>
+  <div class="brand"><svg viewBox="0 0 24 24" width="29" height="29" fill="#D9705C" aria-hidden="true"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></svg><span>Paws &amp; Pause</span></div>
+  <main class="slide"><section class="hero" aria-label="Paws &amp; Pause title slide">
+    <div class="copy"><div class="eyebrow">Cozy Life Sim</div><h1>Paws &amp;<br />Pause</h1><p class="subtitle">One kid. One small town. One very big dream.</p></div>
+    <div class="scene" aria-label="A child follows a paw trail through a small town toward a puppy">
+      <svg viewBox="0 0 1120 735" role="img" aria-label="Small town, child, paw trail, and puppy">
+        <defs>
+          <filter id="softGlow"><feGaussianBlur stdDeviation="18"/></filter>
+          <linearGradient id="hillA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#A8CEC1"/><stop offset="1" stop-color="#8CB9AC"/></linearGradient>
+          <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#E8C986"/><stop offset="1" stop-color="#CDA362"/></linearGradient>
+        </defs>
+        <circle cx="930" cy="105" r="58" fill="#F4C86B" opacity=".82"/>
+        <path d="M-70 385 Q170 210 405 345 T870 280 T1190 330 L1190 570 L-70 570Z" fill="url(#hillA)"/>
+        <path d="M-80 430 Q220 300 470 420 T920 360 T1200 405 L1200 600 L-80 600Z" fill="#71A498" opacity=".82"/>
+        <g stroke="#3A2C22" stroke-opacity=".28" stroke-width="4" stroke-linejoin="round">
+          <path d="M112 354V235h146v119Z" fill="#F3D6A1"/><path d="M87 239l98-83 98 83Z" fill="#D9705C"/><path d="M192 354v-59h32v59Z" fill="#8A6852"/><rect x="127" y="270" width="28" height="27" rx="3" fill="#F7EBCB"/><rect x="215" y="270" width="28" height="27" rx="3" fill="#F7EBCB"/><path d="M232 180v-37h23v48" fill="#B8754F"/>
+          <path d="M340 365V267h120v98Z" fill="#EBC67F"/><path d="M323 270l77-64 77 64Z" fill="#3E7C74"/><rect x="386" y="313" width="27" height="52" rx="3" fill="#8A6852"/><rect x="354" y="287" width="25" height="23" rx="3" fill="#FFF3D6"/><rect x="428" y="287" width="25" height="23" rx="3" fill="#FFF3D6"/>
+          <path d="M690 354V255h138v99Z" fill="#E7B889"/><path d="M666 258l93-76 93 76Z" fill="#D98F2B"/><rect x="747" y="297" width="30" height="57" rx="3" fill="#8A6852"/><rect x="713" y="279" width="26" height="23" rx="3" fill="#FFF3D6"/><rect x="790" y="279" width="26" height="23" rx="3" fill="#FFF3D6"/><path d="M798 195v-35h22v42" fill="#B8754F"/>
+          <path d="M36 407h205M36 424h205M57 388v64M104 388v64M151 388v64M198 388v64" fill="none" stroke="#3E7C74" stroke-width="7" opacity=".8"/>
+        </g>
+        <g fill="none" stroke="#3E7C74" stroke-width="7" stroke-linecap="round"><path d="M924 375q28-47 63-4t43-43"/><path d="M941 375l-15-28M959 369l9-31"/></g>
+        <g fill="#244C46"><path d="M876 384q20-71 43 0Z"/><path d="M852 385q20-53 39 0Z"/><path d="M900 385q21-58 42 0Z"/></g>
+        <path d="M460 735 Q560 570 725 505 Q840 460 1030 535 L1130 735Z" fill="url(#ground)" opacity=".9"/>
+        <g class="trail" fill="#FFF8E7" stroke="#3A2C22" stroke-opacity=".08" stroke-width="2">
+          <g transform="translate(645 510) rotate(-12) scale(.72)"><ellipse cx="0" cy="16" rx="24" ry="20"/><ellipse cx="-24" cy="-12" rx="10" ry="15"/><ellipse cx="-7" cy="-23" rx="10" ry="15"/><ellipse cx="12" cy="-23" rx="10" ry="15"/><ellipse cx="28" cy="-11" rx="10" ry="15"/></g>
+          <g transform="translate(760 455) rotate(14) scale(.9)" opacity=".72"><ellipse cx="0" cy="16" rx="24" ry="20"/><ellipse cx="-24" cy="-12" rx="10" ry="15"/><ellipse cx="-7" cy="-23" rx="10" ry="15"/><ellipse cx="12" cy="-23" rx="10" ry="15"/><ellipse cx="28" cy="-11" rx="10" ry="15"/></g>
+          <g transform="translate(855 390) rotate(-18) scale(.56)" opacity=".55"><ellipse cx="0" cy="16" rx="24" ry="20"/><ellipse cx="-24" cy="-12" rx="10" ry="15"/><ellipse cx="-7" cy="-23" rx="10" ry="15"/><ellipse cx="12" cy="-23" rx="10" ry="15"/><ellipse cx="28" cy="-11" rx="10" ry="15"/></g>
+        </g>
+        <g class="child" transform="translate(548 530)" stroke="#3A2C22" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="-55" r="21" fill="#D98F2B"/><path d="M-18-67q18-24 37 0" fill="#3E7C74"/><path d="M-18-30q19-14 38 0v72h-38Z" fill="#D9705C"/><path d="M-8 42v42M11 42v42M-8 84h-17M11 84h18" fill="none"/><path d="M20-10q35 8 47 34" fill="none"/></g>
+        <g class="puppy" transform="translate(0 0)"><ellipse class="halo" cx="1005" cy="607" rx="115" ry="78" fill="#FFF4CF" opacity=".48" filter="url(#softGlow)"/><path d="M979 623q-42 13-75-10" fill="none" stroke="#B8754F" stroke-width="16" stroke-linecap="round"/><ellipse cx="1010" cy="624" rx="69" ry="46" fill="#E0A66F" stroke="#3A2C22" stroke-opacity=".25" stroke-width="4"/><ellipse cx="1014" cy="566" rx="57" ry="51" fill="#E7B77F" stroke="#3A2C22" stroke-opacity=".25" stroke-width="4"/><path d="M976 535q-35-27-39 18t30 35M1051 535q35-27 39 18t-30 35" fill="#B8754F" stroke="#3A2C22" stroke-opacity=".25" stroke-width="4"/><circle cx="995" cy="563" r="6" fill="#3A2C22"/><circle cx="1035" cy="563" r="6" fill="#3A2C22"/><ellipse cx="1015" cy="583" rx="10" ry="7" fill="#3A2C22"/><path d="M1009 593q7 7 14 0" fill="none" stroke="#3A2C22" stroke-width="4" stroke-linecap="round"/><path d="M1070 608q43-10 35-48" fill="none" stroke="#E0A66F" stroke-width="13" stroke-linecap="round"/></g>
+      </svg>
+    </div>
+  </section></main>
+  <div class="footer-meta">01 / 06</div><div class="progress" aria-hidden="true"><i></i></div>
+</body>
+</html>

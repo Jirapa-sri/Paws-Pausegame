@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1920, height=1080" />
+  <title>A home. A dog. A little pause. — Paws &amp; Pause</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Libre+Baskerville:wght@400;700&family=Nunito:wght@500;700;800&display=swap');
+
+    :root {
+      --paper: #F5E9D3;
+      --paper-2: #EEDCB8;
+      --ink: #3A2C22;
+      --ink-soft: #6E5C49;
+      --teal: #3E7C74;
+      --teal-deep: #244C46;
+      --marigold: #D98F2B;
+      --coral: #D9705C;
+      --display: "Nunito", ui-rounded, sans-serif;
+      --body: "Libre Baskerville", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      width: 1920px;
+      height: 1080px;
+      margin: 0;
+      overflow: hidden;
+    }
+    body {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 12%, var(--paper-2) 0%, transparent 42%),
+        radial-gradient(circle at 92% 88%, #E9D2A4 0%, transparent 46%),
+        linear-gradient(145deg, #F8EFD9 0%, var(--paper) 48%, #EAD7B0 100%);
+    }
+
+    .slide {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      isolation: isolate;
+    }
+
+    /* One quiet halo: a soft frame for the final beat. */
+    .slide::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 690px;
+      height: 690px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(62, 124, 116, 0.13);
+      border-radius: 50%;
+      box-shadow: 0 0 0 30px rgba(62, 124, 116, 0.028);
+    }
+
+    .wordmark {
+      position: absolute;
+      top: 54px;
+      left: 110px;
+      color: var(--ink-soft);
+      font: 700 24px var(--display);
+      letter-spacing: 0.01em;
+    }
+
+    .closer {
+      width: 1180px;
+      margin-top: 18px;
+      text-align: center;
+      align-items: center;
+    }
+
+    .paw-mark {
+      display: grid;
+      place-items: center;
+      width: 154px;
+      height: 154px;
+      margin-bottom: 34px;
+      border: 1px solid rgba(217, 112, 92, 0.24);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 16px 34px -25px rgba(42, 30, 18, 0.58);
+    }
+    .paw-mark svg {
+      width: 88px;
+      height: 88px;
+      overflow: visible;
+    }
+
+    h1 {
+      max-width: 1120px;
+      margin: 0;
+      color: var(--ink);
+      font: 800 82px/1.04 var(--display);
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+    .closing-line {
+      margin: 28px 0 0;
+      color: var(--teal-deep);
+      font: 700 29px/1.35 var(--display);
+      letter-spacing: 0.01em;
+    }
+  </style>
+</head>
+<body>
+  <div class="wordmark" aria-label="Paws &amp; Pause">Paws &amp; Pause</div>
+
+  <main class="slide closer">
+    <div class="paw-mark" aria-hidden="true">
+      <!-- Bespoke, softly irregular paw silhouette rather than repeated circles. -->
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M39.6 48.1C32.1 48.9 26.7 43.6 27.8 36.8C28.8 30.8 34.1 27.1 39.7 28.5C45.1 29.8 48.1 35.1 46.9 40.5C45.8 45.2 43.1 47.6 39.6 48.1Z" fill="var(--coral)"/>
+        <path d="M62.5 39.8C59.1 34.7 60.6 28.5 65.8 25.6C70.6 22.9 76.3 24.7 78.4 29.8C80.5 34.8 78.3 40.6 73.5 43C69.1 45.2 65.1 43.6 62.5 39.8Z" fill="var(--coral)"/>
+        <path d="M88.1 49.8C82.2 48.7 78.8 43.6 80.1 37.8C81.5 31.7 86.8 28.7 92.2 30.7C97.5 32.6 99.9 38.5 97.4 43.7C95.4 48 92.1 50.6 88.1 49.8Z" fill="var(--coral)"/>
+        <path d="M51.6 53.2C56.8 49.1 64.5 48.8 70.1 52.6C76.4 56.9 83.2 66.1 84.5 75.6C85.8 85.3 80.8 93.5 72.1 96.4C65.8 98.5 60.9 94.7 56.1 94.4C51.1 94.2 46.5 98.1 40.4 95.7C31.8 92.3 28.7 83.8 31.1 74.6C33.4 65.7 43.1 59.8 51.6 53.2Z" fill="var(--coral)"/>
+      </svg>
+    </div>
+    <h1>A home. A dog. A little pause.</h1>
+    <p class="closing-line">This is Paws &amp; Pause.</p>
+  </main>
+</body>
+</html>
