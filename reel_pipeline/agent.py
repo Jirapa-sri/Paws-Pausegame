@@ -176,7 +176,7 @@ async def run_via_agent(settings: Settings) -> PipelineReport:
     deps = AgentDeps(settings=settings)
     agent = build_reel_agent(settings)
     result = await agent.run(
-        "Produce the complete Paw Prints pitch reel and grading artifacts. "
+        "Produce the complete Paws & Pause pitch reel and grading artifacts. "
         "Call every tool in the documented order, then return PipelineReport.",
         deps=deps,
     )

@@ -1,4 +1,4 @@
-"""Paw Prints reel pipeline package."""
+"""Paws & Pause reel pipeline package."""
 
 from .config import settings
 

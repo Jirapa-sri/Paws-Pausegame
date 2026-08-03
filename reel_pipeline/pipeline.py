@@ -1,4 +1,4 @@
-"""Orchestrate the full Paw Prints reel pipeline."""
+"""Orchestrate the full Paws & Pause reel pipeline."""
 
 from __future__ import annotations
 

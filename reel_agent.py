@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Paw Prints reel agent — entry point.
+"""Paws & Pause reel agent — entry point.
 
 Reads the existing proposal + slide plan, generates HTML slides, critiques and
 revises them, synthesizes TTS narration, renders PNGs, and composes reel.mp4.
@@ -27,7 +27,7 @@ def configure_logging(verbose: bool) -> None:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate a 30–60s Paw Prints pitch reel from proposal + slide plan."
+        description="Generate a 30–60s Paws & Pause pitch reel from proposal + slide plan."
     )
     parser.add_argument(
         "-v",

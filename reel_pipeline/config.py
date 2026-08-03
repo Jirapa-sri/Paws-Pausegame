@@ -1,4 +1,4 @@
-"""Shared configuration for the Paw Prints reel agent."""
+"""Shared configuration for the Paws & Pause reel agent."""
 
 from __future__ import annotations
 
