@@ -1,6 +1,6 @@
-# Paw Prints Reel Agent
+# Paws & Pause Reel Agent
 
-Generate a **30–60 second** pitch reel for *Paw Prints* from the project proposal and slide plan.
+Generate a **30–60 second** pitch reel for *Paws & Pause* from the project proposal and slide plan.
 
 ## Repository layout
 
@@ -11,7 +11,7 @@ requirements.txt
 .env.example
 project_proposal.md
 reel_agent.py
-reel_pipeline/              # modular asyncio pipeline
+reel_pipeline/              # modular asyncio / PydanticAI pipeline
 slides/                     # one HTML file per slide
 ai_grading/
   slide_plan.json
@@ -34,7 +34,7 @@ reel.mp4                    # generated locally (gitignored — upload separatel
 
 Models:
 
-- LLM: **`gpt-5.6-luna`** (PydanticAI)
+- LLM: **`gpt-5.6-luna`** (PydanticAI with tools + schemas)
 - TTS: **`tts-1-hd`**
 
 ## Setup
@@ -59,8 +59,7 @@ cp .env.example .env
 # edit .env → set OPENAI_API_KEY
 ```
 
-A valid OpenAI key is required for LLM critique/polish and `tts-1-hd`.  
-If the key is missing/invalid, the agent still completes using template HTML, structured local critique, and macOS `say` audio so you can verify rendering/video.
+A valid OpenAI key is required for LLM critique/polish and `tts-1-hd`.
 
 ## Run
 
@@ -79,4 +78,4 @@ python reel_agent.py -v
 - `reel.mp4` is gitignored — upload it separately for submission.
 - Slides use HTML/CSS/inline SVG only (no stock photos / AI images).
 - Slide 2 includes a custom town + shelter illustration built entirely with SVG.
-- Proposal content is preserved; the reel slide plan is condensed so the video lands in the 30–60s window (~49s).
+- Do not commit `.env` or API keys.
