@@ -30,6 +30,9 @@ renders/
 *.wav
 *.webm
 
+# Source art for the playable demo (not used by the reel pipeline; kept local only)
+breed-cartoons/
+
 # Playwright
 playwright-report/
 test-results/
