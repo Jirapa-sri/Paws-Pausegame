@@ -529,6 +529,41 @@ const BREEDS = {
     { x:640,  y:280, scale:0.75, roof:"#4A7DBF", wall:"#FBF0DE" },
   ];
 
+  const DECOR_HUTS = [
+    { x:230,  y:560,  scale:0.8,  color:"#E8A33D" },
+    { x:1560, y:560,  scale:0.75, color:"#D98F2B" },
+    { x:1120, y:1040, scale:0.8,  color:"#E8A33D" },
+    { x:400,  y:230,  scale:0.7,  color:"#D9A566" },
+    { x:1720, y:960,  scale:0.75, color:"#E8A33D" },
+    { x:140,  y:1010, scale:0.7,  color:"#D98F2B" },
+    { x:1230, y:190,  scale:0.7,  color:"#E8A33D" },
+    { x:1780, y:420,  scale:0.7,  color:"#D9A566" },
+  ];
+
+  const ELEVATION_BLOBS = [
+    { x:400,  y:210,  rx:260, ry:180, seed:1.1, color:"#B9D98C" },
+    { x:1320, y:260,  rx:300, ry:210, seed:2.3, color:"#A9CE83" },
+    { x:900,  y:720,  rx:360, ry:230, seed:3.6, color:"#B9D98C" },
+    { x:300,  y:960,  rx:260, ry:210, seed:4.4, color:"#A9CE83" },
+    { x:1520, y:950,  rx:280, ry:220, seed:5.2, color:"#B9D98C" },
+    { x:900,  y:1160, rx:250, ry:160, seed:6.1, color:"#A9CE83" },
+  ];
+
+  const MOUNTAIN_CLUSTERS = [
+    { x:70,   y:110,  scale:1.0 },
+    { x:1830, y:140,  scale:0.9 },
+    { x:60,   y:1210, scale:0.85 },
+    { x:1840, y:1220, scale:1.0 },
+    { x:970,  y:30,   scale:0.75 },
+  ];
+
+  const MINI_PONDS = [
+    { x:1250, y:540, rx:70, ry:50 },
+    { x:900,  y:1060, rx:55, ry:40 },
+  ];
+
+  const PLAZA_CX = 820, PLAZA_CY = 420;
+
   const NPCS = [
     { name:"Mara", homeX:600, homeY:520, range:70, speed:2200, phase:0.0, skin:"#D9A066", outfit:"#8A6BAE", hair:"#3A2417", eyeStyle:"round", lines:[
       "The bakery smells like cinnamon today — you should stop by.",
@@ -915,46 +950,129 @@ const BREEDS = {
 
   const ZONE_ICONS = { home: drawHomeIcon, cafe: drawCafeIcon, shelter: drawShelterIcon, stadium: drawStadiumIcon, arcade: drawArcadeIcon };
 
-  function drawLakeWater(){
+  function wobblyBlobPath(c, cx, cy, rx, ry, points, seed){
+    c.beginPath();
+    for(let i=0;i<=points;i++){
+      const a = (i/points)*Math.PI*2;
+      const wob = 1 + 0.11*Math.sin(a*3+seed) + 0.06*Math.sin(a*5+seed*1.7);
+      const px = cx + Math.cos(a)*rx*wob;
+      const py = cy + Math.sin(a)*ry*wob;
+      if(i===0) c.moveTo(px,py); else c.lineTo(px,py);
+    }
+    c.closePath();
+  }
+
+  function drawPond(cx, cy, rx, ry, opts){
+    opts = opts || {};
+    const seed = opts.seed || 1.2;
     ctx.save();
     ctx.fillStyle = "#6FA7B8";
-    ctx.beginPath();
-    const points = 20;
-    for(let i=0;i<=points;i++){
-      const a = (i/points)*Math.PI*2;
-      const wob = 1 + 0.1*Math.sin(a*3+1.2) + 0.06*Math.sin(a*5+0.4);
-      const px = LAKE_CX + Math.cos(a)*LAKE_RX*wob;
-      const py = LAKE_CY + Math.sin(a)*LAKE_RY*wob;
-      if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
-    }
-    ctx.closePath();
+    wobblyBlobPath(ctx, cx, cy, rx, ry, 20, seed);
     ctx.fill();
     ctx.fillStyle = "#8FC1D6";
-    ctx.beginPath();
-    for(let i=0;i<=points;i++){
-      const a = (i/points)*Math.PI*2;
-      const wob = 1 + 0.1*Math.sin(a*3+1.2) + 0.06*Math.sin(a*5+0.4);
-      const px = LAKE_CX + Math.cos(a)*(LAKE_RX-10)*wob;
-      const py = LAKE_CY + Math.sin(a)*(LAKE_RY-10)*wob;
-      if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
-    }
-    ctx.closePath();
+    wobblyBlobPath(ctx, cx, cy, rx-10, ry-10, 20, seed);
     ctx.fill();
     ctx.strokeStyle = "rgba(255,255,255,0.55)"; ctx.lineWidth = 2.5; ctx.lineCap = "round";
+    const scale = rx/175;
     for(let i=0;i<3;i++){
       ctx.beginPath();
-      ctx.ellipse(LAKE_CX - 20 + i*8, LAKE_CY - 10 + i*22, 46 - i*10, 8, 0, 0.15, Math.PI-0.15);
+      ctx.ellipse(cx - 20*scale + i*8*scale, cy - 10*scale + i*22*scale, Math.max(6,(46-i*10)*scale), 8*scale, 0, 0.15, Math.PI-0.15);
       ctx.stroke();
     }
-    ctx.fillStyle = "#A9784F";
-    ctx.fillRect(LAKE_CX-16, LAKE_CY-LAKE_RY-6, 32, 46);
-    ctx.strokeStyle = "rgba(58,44,34,0.3)"; ctx.lineWidth = 1.5;
-    for(let i=1;i<4;i++){
+    if(opts.dock){
+      ctx.fillStyle = "#A9784F";
+      ctx.fillRect(cx-16, cy-ry-6, 32, 46);
+      ctx.strokeStyle = "rgba(58,44,34,0.3)"; ctx.lineWidth = 1.5;
+      for(let i=1;i<4;i++){
+        ctx.beginPath();
+        ctx.moveTo(cx-16, cy-ry-6+i*11);
+        ctx.lineTo(cx+16, cy-ry-6+i*11);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawLakeWater(){
+    drawPond(LAKE_CX, LAKE_CY, LAKE_RX, LAKE_RY, { dock:true, seed:1.2 });
+  }
+
+  function drawIslandTerrain(){
+    ctx.fillStyle = "#8FD3DE";
+    ctx.fillRect(0, 0, WORLD_W, WORLD_H);
+
+    ctx.fillStyle = "#EAD9A8";
+    wobblyBlobPath(ctx, WORLD_W/2, WORLD_H/2, WORLD_W/2-24, WORLD_H/2-24, 26, 2.1);
+    ctx.fill();
+
+    ctx.fillStyle = "#B9D98C";
+    wobblyBlobPath(ctx, WORLD_W/2, WORLD_H/2, WORLD_W/2-62, WORLD_H/2-62, 26, 3.4);
+    ctx.fill();
+
+    ELEVATION_BLOBS.forEach(b => {
+      ctx.fillStyle = b.color;
+      wobblyBlobPath(ctx, b.x, b.y, b.rx, b.ry, 16, b.seed);
+      ctx.fill();
+    });
+  }
+
+  function drawMountainCluster(cx, cy, scale){
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(scale, scale);
+    ctx.fillStyle = "rgba(58,44,34,0.15)";
+    ctx.beginPath(); ctx.ellipse(0, 34, 50, 12, 0, 0, Math.PI*2); ctx.fill();
+    [[-20,10,34,"#9A9A94"],[16,14,30,"#8C8C86"],[-2,-6,38,"#A6A69E"]].forEach(([ox,oy,r,c]) => {
+      ctx.fillStyle = c;
       ctx.beginPath();
-      ctx.moveTo(LAKE_CX-16, LAKE_CY-LAKE_RY-6+i*11);
-      ctx.lineTo(LAKE_CX+16, LAKE_CY-LAKE_RY-6+i*11);
-      ctx.stroke();
-    }
+      ctx.moveTo(ox-r*0.9, oy+r*0.5);
+      ctx.lineTo(ox-r*0.3, oy-r*0.9);
+      ctx.lineTo(ox+r*0.5, oy-r*0.6);
+      ctx.lineTo(ox+r*0.9, oy+r*0.4);
+      ctx.lineTo(ox+r*0.2, oy+r*0.7);
+      ctx.closePath();
+      ctx.fill();
+    });
+    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.beginPath(); ctx.ellipse(-4, -16, 14, 7, 0.3, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawHut(cx, cy, scale, color){
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(scale, scale);
+    ctx.fillStyle = "rgba(58,44,34,0.15)";
+    ctx.beginPath(); ctx.ellipse(0, 14, 16, 5, 0, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(-14, 12);
+    ctx.quadraticCurveTo(-14, -14, 0, -16);
+    ctx.quadraticCurveTo(14, -14, 14, 12);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = "#3A2C22";
+    ctx.beginPath(); ctx.ellipse(0, 10, 5, 7, 0, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawPlazaHub(cx, cy){
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.fillStyle = "rgba(58,44,34,0.12)";
+    ctx.beginPath(); ctx.ellipse(0, 8, 76, 20, 0, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = "#EAD9A8";
+    ctx.beginPath(); ctx.arc(0, 0, 70, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = "rgba(58,44,34,0.22)"; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(0, 0, 70, 0, Math.PI*2); ctx.stroke();
+    ctx.fillStyle = "#F3DBAA";
+    ctx.beginPath(); ctx.arc(0, 0, 46, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = "rgba(217,112,92,0.55)";
+    ctx.beginPath(); ctx.arc(0, 6, 14, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(-13, -6, 6, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(13, -6, 6, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(-6, -16, 5, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(6, -16, 5, 0, Math.PI*2); ctx.fill();
     ctx.restore();
   }
 
@@ -1008,14 +1126,8 @@ const BREEDS = {
     ctx.save();
     ctx.translate(-camera.x, -camera.y);
 
-    ctx.fillStyle = "#DCE9B8";
-    ctx.fillRect(0,0,WORLD_W,WORLD_H);
-    ctx.fillStyle = "#E4EFC4";
-    for(let gx=0; gx<WORLD_W; gx+=64){
-      for(let gy=0; gy<WORLD_H; gy+=64){
-        if((Math.floor(gx/64)+Math.floor(gy/64)) % 2 === 0) ctx.fillRect(gx,gy,64,64);
-      }
-    }
+    drawIslandTerrain();
+    MOUNTAIN_CLUSTERS.forEach(m => drawMountainCluster(m.x, m.y, m.scale));
 
     ctx.strokeStyle = "#EAD9A8";
     ctx.lineWidth = 34;
@@ -1028,11 +1140,15 @@ const BREEDS = {
     ctx.lineWidth = 34;
     ctx.stroke();
 
+    drawPlazaHub(PLAZA_CX, PLAZA_CY);
+
     FLOWER_PATCHES.forEach(([fx,fy], i) => drawFlowerPatch(fx, fy, i*3.7));
     TREES.forEach(([tx,ty], i) => drawTree(tx, ty, 0.9 + seededRand(i)*0.3));
 
+    MINI_PONDS.forEach((pd, i) => drawPond(pd.x, pd.y, pd.rx, pd.ry, { seed: 2.5+i }));
     drawLakeWater();
     DECOR_HOUSES.forEach(drawDecorHouse);
+    DECOR_HUTS.forEach(h => drawHut(h.x, h.y, h.scale, h.color));
 
     for(const z of ZONES){
       const iconFn = ZONE_ICONS[z.icon];
@@ -1320,8 +1436,12 @@ const BREEDS = {
   function drawMinimap(){
     const sx = MW / WORLD_W, sy = MH / WORLD_H;
     mctx.clearRect(0,0,MW,MH);
-    mctx.fillStyle = "#DCE9B8";
+    mctx.fillStyle = "#8FD3DE";
     mctx.fillRect(0,0,MW,MH);
+    mctx.fillStyle = "#B9D98C";
+    mctx.beginPath();
+    mctx.ellipse(MW/2, MH/2, MW/2-4, MH/2-4, 0, 0, Math.PI*2);
+    mctx.fill();
 
     mctx.strokeStyle = "rgba(234,217,168,0.9)";
     mctx.lineWidth = 3;
