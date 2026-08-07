@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=1920, height=1080" />
   <title>A home. A dog. A little pause. — Paws &amp; Pause</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Libre+Baskerville:wght@400;700&family=Nunito:wght@500;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Nunito:wght@500;700;800&family=IBM+Plex+Mono:wght@500&display=swap');
 
     :root {
       --paper: #F5E9D3;
@@ -22,12 +22,14 @@
     }
 
     * { box-sizing: border-box; }
+
     html, body {
+      margin: 0;
       width: 1920px;
       height: 1080px;
-      margin: 0;
       overflow: hidden;
     }
+
     body {
       color: var(--ink);
       background:
@@ -36,95 +38,140 @@
         linear-gradient(145deg, #F8EFD9 0%, var(--paper) 48%, #EAD7B0 100%);
     }
 
+    .brand {
+      position: absolute;
+      top: 48px;
+      left: 110px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink-soft);
+      font-family: var(--display);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .brand svg { flex: 0 0 auto; }
+
     .slide {
       position: relative;
       width: 1920px;
       height: 1080px;
+      padding: 88px 110px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       isolation: isolate;
+      text-align: center;
     }
 
-    /* One quiet halo: a soft frame for the final beat. */
     .slide::before {
       content: "";
       position: absolute;
       z-index: -1;
-      width: 690px;
-      height: 690px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      border: 1px solid rgba(62, 124, 116, 0.13);
+      width: 430px;
+      height: 430px;
+      top: 184px;
+      left: 745px;
       border-radius: 50%;
-      box-shadow: 0 0 0 30px rgba(62, 124, 116, 0.028);
+      background: radial-gradient(circle, rgba(217,143,43,0.16) 0%, rgba(217,143,43,0.07) 46%, rgba(217,143,43,0) 72%);
+      animation: halo-in 1.6s ease-out both;
     }
 
-    .wordmark {
-      position: absolute;
-      top: 54px;
-      left: 110px;
-      color: var(--ink-soft);
-      font: 700 24px var(--display);
-      letter-spacing: 0.01em;
-    }
-
-    .closer {
-      width: 1180px;
-      margin-top: 18px;
-      text-align: center;
+    .closing-stack {
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      transform: translateY(-4px);
     }
 
-    .paw-mark {
+    .hero-mark {
+      width: 164px;
+      height: 164px;
       display: grid;
       place-items: center;
-      width: 154px;
-      height: 154px;
-      margin-bottom: 34px;
-      border: 1px solid rgba(217, 112, 92, 0.24);
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.22);
-      box-shadow: 0 16px 34px -25px rgba(42, 30, 18, 0.58);
-    }
-    .paw-mark svg {
-      width: 88px;
-      height: 88px;
-      overflow: visible;
+      background: rgba(255,255,255,0.28);
+      border: 1px solid rgba(217,112,92,0.18);
+      box-shadow: 0 18px 38px -25px rgba(42,30,18,0.52);
+      animation: mark-in 1.35s cubic-bezier(.2,.75,.25,1) both;
     }
 
+    .hero-mark svg { width: 108px; height: 108px; }
+
     h1 {
-      max-width: 1120px;
-      margin: 0;
-      color: var(--ink);
-      font: 800 82px/1.04 var(--display);
-      letter-spacing: -0.035em;
-      text-wrap: balance;
-    }
-    .closing-line {
-      margin: 28px 0 0;
+      max-width: 1160px;
+      margin: 36px 0 0;
       color: var(--teal-deep);
-      font: 700 29px/1.35 var(--display);
-      letter-spacing: 0.01em;
+      font-family: var(--display);
+      font-size: 92px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.06;
+      text-wrap: balance;
+      animation: copy-in 1.15s 0.18s ease-out both;
+    }
+
+    .lede {
+      max-width: 900px;
+      margin: 28px auto 0;
+      color: var(--ink-soft);
+      font-family: var(--body);
+      font-size: 29px;
+      line-height: 1.5;
+      text-wrap: balance;
+      animation: copy-in 1.15s 0.34s ease-out both;
+    }
+
+    @keyframes halo-in {
+      from { opacity: 0; transform: scale(.88); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes mark-in {
+      from { opacity: 0; transform: scale(.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes copy-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div class="wordmark" aria-label="Paws &amp; Pause">Paws &amp; Pause</div>
+  <div class="brand" aria-label="Paws and Pause">
+    <svg viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
+      <g fill="#D9705C">
+        <ellipse cx="18" cy="20" rx="6.2" ry="8.2" transform="rotate(-28 18 20)" />
+        <ellipse cx="31" cy="13" rx="6.4" ry="8.1" transform="rotate(-8 31 13)" />
+        <ellipse cx="45" cy="17" rx="6" ry="8.2" transform="rotate(22 45 17)" />
+        <ellipse cx="51" cy="29" rx="5.5" ry="7.1" transform="rotate(42 51 29)" />
+        <path d="M15 39c0-8.5 7.2-14.2 16-14.2S48 30.5 48 39c0 8.8-7.5 14-17 14S15 47.8 15 39Z" />
+      </g>
+    </svg>
+    <span>Paws &amp; Pause</span>
+  </div>
 
-  <main class="slide closer">
-    <div class="paw-mark" aria-hidden="true">
-      <!-- Bespoke, softly irregular paw silhouette rather than repeated circles. -->
-      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M39.6 48.1C32.1 48.9 26.7 43.6 27.8 36.8C28.8 30.8 34.1 27.1 39.7 28.5C45.1 29.8 48.1 35.1 46.9 40.5C45.8 45.2 43.1 47.6 39.6 48.1Z" fill="var(--coral)"/>
-        <path d="M62.5 39.8C59.1 34.7 60.6 28.5 65.8 25.6C70.6 22.9 76.3 24.7 78.4 29.8C80.5 34.8 78.3 40.6 73.5 43C69.1 45.2 65.1 43.6 62.5 39.8Z" fill="var(--coral)"/>
-        <path d="M88.1 49.8C82.2 48.7 78.8 43.6 80.1 37.8C81.5 31.7 86.8 28.7 92.2 30.7C97.5 32.6 99.9 38.5 97.4 43.7C95.4 48 92.1 50.6 88.1 49.8Z" fill="var(--coral)"/>
-        <path d="M51.6 53.2C56.8 49.1 64.5 48.8 70.1 52.6C76.4 56.9 83.2 66.1 84.5 75.6C85.8 85.3 80.8 93.5 72.1 96.4C65.8 98.5 60.9 94.7 56.1 94.4C51.1 94.2 46.5 98.1 40.4 95.7C31.8 92.3 28.7 83.8 31.1 74.6C33.4 65.7 43.1 59.8 51.6 53.2Z" fill="var(--coral)"/>
-      </svg>
+  <main class="slide">
+    <div class="closing-stack">
+      <div class="hero-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <g fill="#D9705C">
+            <ellipse cx="18" cy="20" rx="6.2" ry="8.2" transform="rotate(-28 18 20)" />
+            <ellipse cx="31" cy="13" rx="6.4" ry="8.1" transform="rotate(-8 31 13)" />
+            <ellipse cx="45" cy="17" rx="6" ry="8.2" transform="rotate(22 45 17)" />
+            <ellipse cx="51" cy="29" rx="5.5" ry="7.1" transform="rotate(42 51 29)" />
+            <path d="M15 39c0-8.5 7.2-14.2 16-14.2S48 30.5 48 39c0 8.8-7.5 14-17 14S15 47.8 15 39Z" />
+          </g>
+        </svg>
+      </div>
+      <h1>A home. A dog. A little pause.</h1>
+      <p class="lede">A home. A dog. A little pause in your day.</p>
     </div>
-    <h1>A home. A dog. A little pause.</h1>
-    <p class="closing-line">This is Paws &amp; Pause.</p>
   </main>
 </body>
 </html>

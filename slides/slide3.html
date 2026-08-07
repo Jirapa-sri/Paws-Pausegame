@@ -5,99 +5,144 @@
   <meta name="viewport" content="width=1920, height=1080" />
   <title>The daily rhythm — Paws &amp; Pause</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Libre+Baskerville:wght@400;700&family=Nunito:wght@600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Nunito:wght@500;700;800&family=IBM+Plex+Mono:wght@500&display=swap');
     :root {
-      --paper:#F5E9D3; --paper-2:#EEDCB8; --ink:#3A2C22; --ink-soft:#6E5C49;
-      --ink-faint:#8C7A66; --teal:#3E7C74; --teal-deep:#244C46;
-      --marigold:#D98F2B; --coral:#D9705C; --line:rgba(58,44,34,.16);
-      --shadow:0 22px 50px -28px rgba(42,30,18,.5);
-      --display:"Nunito",ui-rounded,sans-serif; --body:"Libre Baskerville",Georgia,serif;
-      --mono:"IBM Plex Mono",ui-monospace,monospace;
+      --paper: #F5E9D3;
+      --paper-2: #EEDCB8;
+      --ink: #3A2C22;
+      --ink-soft: #6E5C49;
+      --ink-faint: #8C7A66;
+      --teal: #3E7C74;
+      --teal-deep: #244C46;
+      --marigold: #D98F2B;
+      --coral: #D9705C;
+      --line: rgba(58,44,34,0.16);
+      --shadow: 0 22px 50px -28px rgba(42,30,18,0.5);
+      --display: "Nunito", ui-rounded, sans-serif;
+      --body: "Libre Baskerville", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;width:1920px;height:1080px;overflow:hidden}
-    body{color:var(--ink);font-family:var(--body);background:
-      radial-gradient(circle at 8% 10%,var(--paper-2) 0,transparent 40%),
-      radial-gradient(circle at 93% 90%,#E9D2A4 0,transparent 44%),
-      linear-gradient(145deg,#F8EFD9 0%,var(--paper) 48%,#EAD7B0 100%)}
-    body:after{content:"";position:absolute;inset:24px;border:1px solid rgba(58,44,34,.09);border-radius:30px;pointer-events:none}
-    .brand{position:absolute;top:48px;left:110px;display:flex;align-items:center;gap:12px;font:700 24px var(--display);color:var(--ink-soft);z-index:5}
-    .slide{width:1920px;height:1080px;padding:112px 110px 120px;position:relative;display:flex;flex-direction:column;justify-content:center}
-    .eyebrow{display:flex;align-items:center;gap:14px;margin:0 0 20px;font:600 22px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
-    .eyebrow:before{content:"";width:34px;height:3px;background:var(--marigold);border-radius:2px}
-    h2{margin:0;font:800 78px/1.04 var(--display);letter-spacing:-.025em;color:var(--ink)}
-    .lede{margin:18px 0 0;color:var(--teal-deep);font:700 25px/1.3 var(--display);letter-spacing:.01em}
-    .loop-wrap{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:38px;padding:28px 0 26px}
-    .loop-path{position:absolute;inset:0 -34px;z-index:0;overflow:visible;pointer-events:none}
-    .loop-path path{fill:none;stroke:var(--teal);stroke-width:3;stroke-dasharray:9 10;opacity:.55;stroke-linecap:round;stroke-linejoin:round}
-    .loop-path .return{stroke:var(--coral);opacity:.76}
-    .loop-path text{font:600 16px var(--mono);letter-spacing:.08em;fill:var(--coral);text-transform:uppercase}
-    .loop-step{position:relative;z-index:1;min-height:286px;padding:25px 28px 27px;border:1px solid var(--line);border-radius:28px;background:rgba(255,255,255,.62);box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
-    .loop-step:after{content:"";position:absolute;right:-36px;bottom:-52px;width:150px;height:150px;border-radius:50%;background:var(--paper-2);opacity:.48}
-    .loop-step:last-child{background:rgba(255,248,222,.9);border:2px solid rgba(217,143,43,.48);box-shadow:0 24px 55px -27px rgba(217,143,43,.65)}
-    .step-top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
-    .loop-num{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:var(--paper);font:600 20px var(--mono);box-shadow:0 7px 0 rgba(36,76,70,.12)}
-    .loop-step:last-child .loop-num{background:var(--coral)}
-    .step-kicker{font:600 17px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
-    .icon{width:68px;height:68px;color:var(--teal-deep);margin:10px 0 8px;position:relative;z-index:1}
-    .loop-step:nth-child(3) .icon{color:var(--coral)}
-    .loop-step:nth-child(4) .icon{color:var(--teal)}
-    .loop-step h3{margin:0;max-width:11ch;font:800 31px/1.12 var(--display);color:var(--teal-deep);letter-spacing:-.015em;position:relative;z-index:1}
-    .loop-step p{margin:9px 0 0;max-width:24ch;font:400 18px/1.42 var(--body);color:var(--ink-soft);position:relative;z-index:1}
-    .tomorrow{position:absolute;right:26px;bottom:24px;display:flex;align-items:center;gap:7px;color:var(--coral);font:600 15px var(--mono);letter-spacing:.08em;text-transform:uppercase;z-index:2}
-    .tomorrow:before{content:"";width:22px;height:2px;background:var(--coral);border-radius:2px}
-    .micro{display:flex;align-items:center;gap:12px;margin-top:25px;color:var(--ink-soft);font:700 22px var(--display);letter-spacing:.01em}
-    .micro .dot{width:10px;height:10px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 5px rgba(217,112,92,.13)}
-    .footer-meta{position:absolute;right:110px;bottom:48px;color:var(--ink-faint);font:500 18px var(--mono)}
-    .progress{position:absolute;left:110px;right:110px;bottom:56px;height:8px;border-radius:999px;background:rgba(58,44,34,.12);overflow:hidden}
-    .progress i{display:block;width:50%;height:100%;background:linear-gradient(90deg,var(--teal),var(--marigold))}
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; width: 1920px; height: 1080px; overflow: hidden; }
+    body {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 12%, var(--paper-2) 0%, transparent 42%),
+        radial-gradient(circle at 92% 88%, #E9D2A4 0%, transparent 46%),
+        linear-gradient(145deg, #F8EFD9 0%, var(--paper) 48%, #EAD7B0 100%);
+    }
+    .slide { width: 1920px; height: 1080px; padding: 132px 110px 112px; display: flex; flex-direction: column; position: relative; }
+    .brand { position: absolute; top: 48px; left: 110px; display: flex; align-items: center; gap: 12px; font: 700 24px var(--display); color: var(--ink-soft); }
+    .eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; color: var(--teal); font: 500 22px var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 34px; height: 3px; border-radius: 3px; background: var(--marigold); }
+    h1, h2, h3, p { margin: 0; }
+    h2 { font: 800 78px/1.02 var(--display); letter-spacing: -.025em; color: var(--ink); }
+    .lede { margin-top: 22px; max-width: 40ch; color: var(--ink-soft); font: 400 30px/1.45 var(--body); }
+    .loop-wrap { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 50px; width: 100%; }
+    .loop-wrap::before { content: ""; position: absolute; left: 104px; right: 104px; top: 61px; border-top: 2px dashed rgba(62,124,116,.32); z-index: 0; }
+    .loop-step {
+      position: relative; z-index: 1; min-height: 268px; padding: 24px 26px 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border: 1px solid var(--line); border-radius: 28px; background: rgba(255,255,255,.56); box-shadow: var(--shadow);
+    }
+    .step-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .loop-num { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: var(--paper); background: var(--teal); font: 500 20px var(--mono); box-shadow: 0 8px 18px -12px rgba(36,76,70,.8); }
+    .loop-step:nth-child(3) .loop-num { background: var(--marigold); }
+    .loop-step:nth-child(4) .loop-num { background: var(--teal-deep); }
+    .icon { width: 58px; height: 58px; color: var(--teal-deep); opacity: .94; }
+    .loop-step:nth-child(3) .icon { color: var(--marigold); }
+    .loop-step:nth-child(4) .icon { color: var(--teal); }
+    .loop-step h3 { max-width: 12ch; color: var(--teal-deep); font: 800 31px/1.12 var(--display); }
+    .loop-step p { max-width: 25ch; color: var(--ink-soft); font: 400 20px/1.35 var(--body); }
+    .payoff { color: var(--coral); font: 700 16px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .loop-arrow { position: absolute; right: -17px; top: 51px; width: 34px; height: 22px; z-index: 3; color: var(--teal); background: var(--paper); border-radius: 20px; }
+    .return-path { position: absolute; left: 108px; right: 108px; top: 244px; height: 112px; z-index: 0; pointer-events: none; }
+    .return-path path { fill: none; stroke: rgba(62,124,116,.34); stroke-width: 2.5; stroke-dasharray: 8 9; stroke-linecap: round; }
+    .return-path polygon { fill: var(--teal); opacity: .72; }
+    .cycle-note { display: flex; align-items: center; gap: 12px; margin-top: 34px; color: var(--ink-faint); font: 500 18px var(--mono); letter-spacing: .04em; }
+    .cycle-note::before { content: "↻"; color: var(--coral); font: 700 28px var(--display); }
+    .tomorrow { position: absolute; left: 50%; top: 785px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; color: var(--teal-deep); font: 500 16px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .tomorrow svg { width: 38px; height: 38px; }
+    .footer-meta { position: absolute; right: 110px; bottom: 48px; color: var(--ink-faint); font: 500 18px var(--mono); }
+    .progress { position: absolute; left: 110px; right: 110px; bottom: 56px; height: 8px; overflow: hidden; border-radius: 999px; background: rgba(58,44,34,.12); }
+    .progress > i { display: block; width: 50%; height: 100%; background: linear-gradient(90deg, var(--teal), var(--marigold)); }
   </style>
 </head>
 <body>
-  <div class="brand" aria-label="Paws and Pause">
-    <svg viewBox="0 0 24 24" width="28" height="28" fill="#D9705C" aria-hidden="true"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></svg>
+  <div class="brand">
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><g fill="#D9705C"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></g></svg>
     <span>Paws &amp; Pause</span>
   </div>
+
   <main class="slide">
     <div class="eyebrow">02 · Core Loop</div>
     <h2>The daily rhythm</h2>
-    <p class="lede">Explore <span aria-hidden="true">→</span> earn <span aria-hidden="true">→</span> care + spend <span aria-hidden="true">→</span> rest + repeat</p>
-    <section class="loop-wrap" aria-label="Four steps in the daily gameplay loop">
-      <svg class="loop-path" viewBox="0 0 1800 390" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <marker id="arrow-teal" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3E7C74"/></marker>
-          <marker id="arrow-coral" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#D9705C"/></marker>
-        </defs>
-        <path d="M355 58 C390 22 410 22 450 58" marker-end="url(#arrow-teal)"/>
-        <path d="M805 58 C840 22 860 22 900 58" marker-end="url(#arrow-teal)"/>
-        <path d="M1255 58 C1290 22 1310 22 1350 58" marker-end="url(#arrow-teal)"/>
-        <path class="return" d="M1585 310 C1635 382 1515 382 1395 382 L405 382 C285 382 165 365 215 310" marker-end="url(#arrow-coral)"/>
-        <text x="830" y="376">tomorrow</text>
+    <p class="lede">One gentle daily loop: earn, spend, care, rest, repeat.</p>
+
+    <div class="loop-wrap">
+      <svg class="return-path" viewBox="0 0 1680 112" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M1580 10 C1580 92 1460 108 1280 108 H400 C215 108 100 91 100 12"/>
+        <polygon points="91,17 100,2 109,17"/>
       </svg>
+
       <article class="loop-step">
-        <div class="step-top"><div class="loop-num">01</div><div class="step-kicker">Start small</div></div>
-        <svg class="icon" viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="36" cy="36" r="23"/><path d="M36 21v16l10 7"/><path d="M19 14l-5-5M53 14l5-5"/></svg>
-        <div><h3>Explore</h3><p>Step outside and see what the town brings today.</p></div>
+        <div class="step-top">
+          <div class="loop-num">01</div>
+          <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="32" cy="29" r="12"/><path d="M32 9v6M32 43v5M12 29h6M46 29h6M18 15l4 4M42 39l4 4"/><path d="M27 52h19M31 48l-4 4"/>
+          </svg>
+        </div>
+        <h3>Wake &amp; explore</h3>
+        <p>Step outside and find one small surprise.</p>
+        <div class="payoff">Start curious</div>
+        <svg class="loop-arrow" viewBox="0 0 34 22" fill="none" aria-hidden="true"><path d="M2 11h25M20 4l8 7-8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </article>
+
       <article class="loop-step">
-        <div class="step-top"><div class="loop-num">02</div><div class="step-kicker">Make a little</div></div>
-        <svg class="icon" viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 54h40M22 50V29h22v21M44 35h10v15M22 29l11-10 11 10"/><path d="M27 39h8M27 44h8"/><circle cx="53" cy="19" r="8"/><path d="M53 15v8M49 19h8"/></svg>
-        <div><h3>Earn</h3><p>Take a friendly job or play a quick mini-game.</p></div>
+        <div class="step-top">
+          <div class="loop-num">02</div>
+          <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="22" cy="31" r="12"/><path d="M22 24v14M15 31h14"/><path d="M39 22l4 3 5-1 3 5-3 4 1 5-5 3-4-3-5 1-3-5 3-4-1-5 5-3Z"/><circle cx="41" cy="31" r="2"/><circle cx="48" cy="36" r="2"/>
+          </svg>
+        </div>
+        <h3>Earn &amp; play</h3>
+        <p>Take cozy jobs and mini-games for coins.</p>
+        <div class="payoff">Make a little</div>
+        <svg class="loop-arrow" viewBox="0 0 34 22" fill="none" aria-hidden="true"><path d="M2 11h25M20 4l8 7-8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </article>
+
       <article class="loop-step">
-        <div class="step-top"><div class="loop-num">03</div><div class="step-kicker">Together time</div></div>
-        <svg class="icon" viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 30c-7-7-15 3-8 10l23 22 23-22c7-7-1-17-8-10l-15 14-15-14Z"/><path d="M36 24c-4-6-3-12 2-15M49 23l8-7M23 23l-8-7"/><circle cx="54" cy="52" r="10"/><path d="M54 47v10M49 52h10"/></svg>
-        <div><h3>Care + spend</h3><p>Care for your puppy, then decorate your home.</p></div>
+        <div class="step-top">
+          <div class="loop-num">03</div>
+          <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 29h34v15H13z"/><path d="M13 29c0-7 5-11 11-11h10c6 0 11 4 11 11"/><path d="M18 44v7M46 44v7"/><circle cx="27" cy="36" r="2" fill="currentColor"/><path d="M36 34c3-4 7-4 9 0"/><path d="M51 14l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"/>
+          </svg>
+        </div>
+        <h3>Spend, care &amp; decorate</h3>
+        <p>Use coins for treats, toys, and a home that feels yours.</p>
+        <div class="payoff">Make it yours</div>
+        <svg class="loop-arrow" viewBox="0 0 34 22" fill="none" aria-hidden="true"><path d="M2 11h25M20 4l8 7-8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </article>
+
       <article class="loop-step">
-        <div class="step-top"><div class="loop-num">04</div><div class="step-kicker">Payoff</div></div>
-        <svg class="icon" viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 42c0-13 8-23 18-23s18 10 18 23"/><path d="M14 43h44v7H14z"/><path d="M24 50v8M48 50v8M28 29l4 4M44 29l-4 4"/><path d="M34 39h4"/><path d="M18 17l2-5 2 5 5 2-5 2-2 5-2-5-5-2 5-2ZM55 12l1-3 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z"/></svg>
-        <div><h3>Rest + repeat</h3><p>Wind down, save the day, and start fresh tomorrow.</p></div>
-        <div class="tomorrow">Tomorrow</div>
+        <div class="step-top">
+          <div class="loop-num">04</div>
+          <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 39c0-10 8-18 19-18s19 8 19 18v7H13z"/><path d="M20 21c-2-7 5-11 9-4 4-7 11-3 9 4"/><circle cx="26" cy="34" r="2" fill="currentColor"/><circle cx="38" cy="34" r="2" fill="currentColor"/><path d="M30 40h4M51 14v10M46 19h10"/><path d="M20 51h24"/>
+          </svg>
+        </div>
+        <h3>Rest &amp; unlock</h3>
+        <p>Sleep on it, then see what tomorrow opens.</p>
+        <div class="payoff">Let tomorrow in</div>
       </article>
-    </section>
-    <div class="micro"><span class="dot"></span><span>Explore. Earn. Care. Rest. One cozy day, then another.</span></div>
+    </div>
+    <div class="cycle-note">No fail states. Just a reason to come back tomorrow.</div>
   </main>
+
+  <div class="tomorrow">
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M27 8a14 14 0 1 0 5 22A15 15 0 0 1 27 8Z"/><path d="M11 8v7M7.5 11.5h7M31 29v5M28.5 31.5h5"/></svg>
+    <span>tomorrow, we begin again</span>
+  </div>
   <div class="footer-meta">03 / 06</div>
   <div class="progress" aria-hidden="true"><i></i></div>
 </body>

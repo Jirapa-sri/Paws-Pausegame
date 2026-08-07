@@ -73,7 +73,7 @@ def render_loop(slide: SlideSpec, ds: DesignSystem, index: int, total: int) -> s
 
 def render_features(slide: SlideSpec, ds: DesignSystem, index: int, total: int) -> str:
     icons = ["shield", "heart", "paw"]
-    titles = ["Breed picker", "Mood & care", "Look together"]
+    titles = ["AI photo match", "Mood & care", "Look together"]
     cards = []
     for i, bullet in enumerate(slide.bullets):
         title = titles[i] if i < len(titles) else f"Beat {i + 1}"
@@ -93,7 +93,7 @@ def render_features(slide: SlideSpec, ds: DesignSystem, index: int, total: int) 
 
 def render_feature_grid(slide: SlideSpec, ds: DesignSystem, index: int, total: int) -> str:
     icons = ["clock", "heart", "home", "paw"]
-    titles = ["Café kitchen", "Lake fishing", "Go-Kart Stadium", "Arcade"]
+    titles = ["Café", "Fishing", "Go-Kart", "Arcade"]
     cards = []
     for i, bullet in enumerate(slide.bullets[:4]):
         title = titles[i] if i < len(titles) else f"Mode {i + 1}"
@@ -103,19 +103,20 @@ def render_feature_grid(slide: SlideSpec, ds: DesignSystem, index: int, total: i
             f"<p>{escape(bullet)}</p></div>"
         )
     grid = (
-        '<div class="card-grid" style="grid-template-columns:repeat(2,1fr);">'
+        '<div class="card-grid" style="grid-template-columns:repeat(4,1fr);">'
         + "".join(cards)
         + "</div>"
     )
     body = f"""
       <div class="eyebrow">{escape(slide.eyebrow)}</div>
       <h2>{escape(slide.title)}</h2>
-      <p class="lede" style="max-width:44ch;">{escape(slide.main_idea)}</p>
+      <p class="lede" style="max-width:52ch;">{escape(slide.main_idea)}</p>
       {grid}
       <div class="badge-row" style="margin-top:28px;">
-        <span class="badge">Open town MVP</span>
-        <span class="badge">Adoption + care</span>
-        <span class="badge">Mii-style creator</span>
+        <span class="badge">Examples — more coming</span>
+        <span class="badge">Island news of the day</span>
+        <span class="badge">AI world-news digest</span>
+        <span class="badge">Fortune ↔ weather</span>
       </div>
     """
     return wrap_slide(slide=slide, ds=ds, body=body, index=index, total=total)

@@ -1,51 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=1920, height=1080" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=1920, height=1080"/>
   <title>Paws &amp; Pause — Cozy Life Sim</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Libre+Baskerville:wght@400;700&family=Nunito:wght@500;700;800&display=swap');
-    :root{--paper:#F5E9D3;--paper2:#EEDCB8;--ink:#3A2C22;--soft:#6E5C49;--faint:#8C7A66;--teal:#3E7C74;--deep:#244C46;--gold:#D98F2B;--coral:#D9705C;--display:"Nunito",ui-rounded,sans-serif;--body:"Libre Baskerville",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
-    *{box-sizing:border-box}html,body{margin:0;width:1920px;height:1080px;overflow:hidden}body{color:var(--ink);background:radial-gradient(circle at 8% 8%,rgba(238,220,184,.95) 0,transparent 38%),radial-gradient(circle at 95% 92%,rgba(233,210,164,.8) 0,transparent 43%),linear-gradient(135deg,#F8EFD9 0%,var(--paper) 52%,#EAD7B0 100%)}
-    .slide{width:1920px;height:1080px;padding:88px 110px;position:relative}.brand{position:absolute;top:46px;left:110px;display:flex;align-items:center;gap:12px;font:700 24px var(--display);color:var(--soft)}.brand svg{filter:drop-shadow(0 3px 4px rgba(217,112,92,.18))}.footer-meta{position:absolute;right:110px;bottom:48px;font:500 16px var(--mono);color:rgba(140,122,102,.58)}.progress{position:absolute;left:110px;right:110px;bottom:56px;height:5px;background:rgba(58,44,34,.08);border-radius:999px;overflow:hidden}.progress i{display:block;width:16%;height:100%;border-radius:inherit;background:linear-gradient(90deg,rgba(62,124,116,.62),rgba(217,143,43,.58))}
-    .hero{height:100%;display:grid;grid-template-columns:.94fr 1.06fr;gap:58px;align-items:center;padding-bottom:20px}.copy{padding-top:12px}.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;color:var(--teal);font:600 21px var(--mono);letter-spacing:.15em;text-transform:uppercase}.eyebrow:before{content:"";width:38px;height:3px;border-radius:2px;background:var(--gold)}h1{margin:0;max-width:760px;font:800 126px/.92 var(--display);letter-spacing:-.045em}h1:after{content:"";display:block;width:138px;height:11px;margin-top:28px;border-radius:20px;background:var(--coral);transform:rotate(-2deg);opacity:.88}.subtitle{max-width:660px;margin:32px 0 0;color:var(--soft);font:400 31px/1.48 var(--body)}
-    .scene{position:relative;height:735px;margin-right:-48px;overflow:hidden;border-radius:48% 8% 10% 42%/12% 12% 12% 18%;background:linear-gradient(180deg,#D9EAE4 0%,#C2DCD4 55%,#E8C986 55.3%,#D5AF68 100%);box-shadow:0 28px 62px -38px rgba(42,30,18,.42)}.scene:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 68% 20%,rgba(255,250,222,.66),transparent 27%),linear-gradient(110deg,transparent 37%,rgba(255,255,255,.15) 37.3%,transparent 38%),radial-gradient(ellipse at 50% 55%,transparent 42%,rgba(58,44,34,.08) 100%)}.scene svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}.scene .trail{animation:drift 5s ease-in-out infinite}.scene .puppy{animation:lift 4s ease-in-out infinite;transform-origin:1110px 610px}.scene .halo{animation:breathe 4s ease-in-out infinite}@keyframes drift{50%{transform:translate(4px,-5px)}}@keyframes lift{50%{transform:translateY(-6px)}}@keyframes breathe{50%{opacity:.9;transform:scale(1.04)}}
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Nunito:wght@500;700;800&family=IBM+Plex+Mono:wght@500&display=swap');
+    :root {
+      --paper:#F5E9D3; --paper-2:#EEDCB8; --ink:#3A2C22; --ink-soft:#6E5C49; --ink-faint:#8C7A66;
+      --teal:#3E7C74; --teal-deep:#244C46; --marigold:#D98F2B; --coral:#D9705C;
+      --line:rgba(58,44,34,.16); --line-strong:rgba(58,44,34,.24);
+      --shadow:0 18px 44px -32px rgba(42,30,18,.38);
+      --display:"Nunito",ui-rounded,sans-serif; --body:"Libre Baskerville",Georgia,serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;width:1920px;height:1080px;overflow:hidden}
+    body{color:var(--ink);font-family:var(--body);background:radial-gradient(circle at 9% 10%,#F0DDBA 0,transparent 34%),radial-gradient(circle at 94% 88%,#E8C982 0,transparent 39%),linear-gradient(145deg,#FBF2DF 0%,var(--paper) 52%,#EAD6AD 100%)}
+    body:before{content:"";position:absolute;inset:0;opacity:.18;pointer-events:none;background-image:radial-gradient(rgba(58,44,34,.18) .7px,transparent .7px);background-size:17px 17px;mix-blend-mode:multiply}
+    .brand{position:absolute;top:48px;left:110px;display:flex;align-items:center;gap:10px;font:700 22px var(--display);color:var(--ink-soft);z-index:3}
+    .brand svg{filter:drop-shadow(0 3px 4px rgba(58,44,34,.10))}
+    .slide{width:1920px;height:1080px;padding:88px 110px;display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;position:relative}
+    .copy{padding-top:12px;position:relative;z-index:2}
+    .eyebrow{font:500 22px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:14px;margin:0 0 24px}
+    .eyebrow:before{content:"";width:38px;height:3px;background:var(--marigold);border-radius:4px}
+    h1{font:800 118px/.94 var(--display);letter-spacing:-.045em;margin:0;max-width:700px;text-wrap:balance;color:var(--ink)}
+    .amp{color:var(--coral);font-weight:700}
+    .subtitle{font:400 33px/1.48 var(--body);color:var(--ink-soft);max-width:700px;margin:30px 0 0}
+    .visual{height:690px;position:relative;display:flex;align-items:center;justify-content:center}
+    .visual:before{content:"";position:absolute;width:650px;height:650px;border-radius:50%;background:rgba(255,250,235,.42);border:1px solid rgba(58,44,34,.07);box-shadow:var(--shadow)}
+    .vignette{position:relative;width:700px;height:620px;z-index:1}
+    .vignette svg{width:100%;height:100%;overflow:visible}
+    .paw{position:absolute;fill:var(--coral);opacity:.62}
+    .paw.one{width:25px;left:245px;top:418px;transform:rotate(-22deg)}
+    .paw.two{width:22px;left:298px;top:454px;transform:rotate(-8deg);opacity:.54}
+    .paw.three{width:20px;left:356px;top:475px;transform:rotate(12deg);opacity:.48}
+    .paw.four{width:18px;left:414px;top:466px;transform:rotate(25deg);opacity:.42}
+    .paw.five{width:17px;left:466px;top:437px;transform:rotate(34deg);opacity:.36}
+    .footer-meta{position:absolute;bottom:48px;right:110px;font:500 18px var(--mono);color:var(--ink-faint)}
+    .progress{position:absolute;left:110px;right:110px;bottom:56px;height:6px;background:rgba(58,44,34,.10);border-radius:999px;overflow:hidden}
+    .progress i{display:block;height:100%;width:16%;background:linear-gradient(90deg,var(--teal),var(--marigold));border-radius:999px}
   </style>
 </head>
 <body>
-  <div class="brand"><svg viewBox="0 0 24 24" width="29" height="29" fill="#D9705C" aria-hidden="true"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></svg><span>Paws &amp; Pause</span></div>
-  <main class="slide"><section class="hero" aria-label="Paws &amp; Pause title slide">
-    <div class="copy"><div class="eyebrow">Cozy Life Sim</div><h1>Paws &amp;<br />Pause</h1><p class="subtitle">One kid. One small town. One very big dream.</p></div>
-    <div class="scene" aria-label="A child follows a paw trail through a small town toward a puppy">
-      <svg viewBox="0 0 1120 735" role="img" aria-label="Small town, child, paw trail, and puppy">
-        <defs>
-          <filter id="softGlow"><feGaussianBlur stdDeviation="18"/></filter>
-          <linearGradient id="hillA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#A8CEC1"/><stop offset="1" stop-color="#8CB9AC"/></linearGradient>
-          <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#E8C986"/><stop offset="1" stop-color="#CDA362"/></linearGradient>
-        </defs>
-        <circle cx="930" cy="105" r="58" fill="#F4C86B" opacity=".82"/>
-        <path d="M-70 385 Q170 210 405 345 T870 280 T1190 330 L1190 570 L-70 570Z" fill="url(#hillA)"/>
-        <path d="M-80 430 Q220 300 470 420 T920 360 T1200 405 L1200 600 L-80 600Z" fill="#71A498" opacity=".82"/>
-        <g stroke="#3A2C22" stroke-opacity=".28" stroke-width="4" stroke-linejoin="round">
-          <path d="M112 354V235h146v119Z" fill="#F3D6A1"/><path d="M87 239l98-83 98 83Z" fill="#D9705C"/><path d="M192 354v-59h32v59Z" fill="#8A6852"/><rect x="127" y="270" width="28" height="27" rx="3" fill="#F7EBCB"/><rect x="215" y="270" width="28" height="27" rx="3" fill="#F7EBCB"/><path d="M232 180v-37h23v48" fill="#B8754F"/>
-          <path d="M340 365V267h120v98Z" fill="#EBC67F"/><path d="M323 270l77-64 77 64Z" fill="#3E7C74"/><rect x="386" y="313" width="27" height="52" rx="3" fill="#8A6852"/><rect x="354" y="287" width="25" height="23" rx="3" fill="#FFF3D6"/><rect x="428" y="287" width="25" height="23" rx="3" fill="#FFF3D6"/>
-          <path d="M690 354V255h138v99Z" fill="#E7B889"/><path d="M666 258l93-76 93 76Z" fill="#D98F2B"/><rect x="747" y="297" width="30" height="57" rx="3" fill="#8A6852"/><rect x="713" y="279" width="26" height="23" rx="3" fill="#FFF3D6"/><rect x="790" y="279" width="26" height="23" rx="3" fill="#FFF3D6"/><path d="M798 195v-35h22v42" fill="#B8754F"/>
-          <path d="M36 407h205M36 424h205M57 388v64M104 388v64M151 388v64M198 388v64" fill="none" stroke="#3E7C74" stroke-width="7" opacity=".8"/>
-        </g>
-        <g fill="none" stroke="#3E7C74" stroke-width="7" stroke-linecap="round"><path d="M924 375q28-47 63-4t43-43"/><path d="M941 375l-15-28M959 369l9-31"/></g>
-        <g fill="#244C46"><path d="M876 384q20-71 43 0Z"/><path d="M852 385q20-53 39 0Z"/><path d="M900 385q21-58 42 0Z"/></g>
-        <path d="M460 735 Q560 570 725 505 Q840 460 1030 535 L1130 735Z" fill="url(#ground)" opacity=".9"/>
-        <g class="trail" fill="#FFF8E7" stroke="#3A2C22" stroke-opacity=".08" stroke-width="2">
-          <g transform="translate(645 510) rotate(-12) scale(.72)"><ellipse cx="0" cy="16" rx="24" ry="20"/><ellipse cx="-24" cy="-12" rx="10" ry="15"/><ellipse cx="-7" cy="-23" rx="10" ry="15"/><ellipse cx="12" cy="-23" rx="10" ry="15"/><ellipse cx="28" cy="-11" rx="10" ry="15"/></g>
-          <g transform="translate(760 455) rotate(14) scale(.9)" opacity=".72"><ellipse cx="0" cy="16" rx="24" ry="20"/><ellipse cx="-24" cy="-12" rx="10" ry="15"/><ellipse cx="-7" cy="-23" rx="10" ry="15"/><ellipse cx="12" cy="-23" rx="10" ry="15"/><ellipse cx="28" cy="-11" rx="10" ry="15"/></g>
-          <g transform="translate(855 390) rotate(-18) scale(.56)" opacity=".55"><ellipse cx="0" cy="16" rx="24" ry="20"/><ellipse cx="-24" cy="-12" rx="10" ry="15"/><ellipse cx="-7" cy="-23" rx="10" ry="15"/><ellipse cx="12" cy="-23" rx="10" ry="15"/><ellipse cx="28" cy="-11" rx="10" ry="15"/></g>
-        </g>
-        <g class="child" transform="translate(548 530)" stroke="#3A2C22" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="-55" r="21" fill="#D98F2B"/><path d="M-18-67q18-24 37 0" fill="#3E7C74"/><path d="M-18-30q19-14 38 0v72h-38Z" fill="#D9705C"/><path d="M-8 42v42M11 42v42M-8 84h-17M11 84h18" fill="none"/><path d="M20-10q35 8 47 34" fill="none"/></g>
-        <g class="puppy" transform="translate(0 0)"><ellipse class="halo" cx="1005" cy="607" rx="115" ry="78" fill="#FFF4CF" opacity=".48" filter="url(#softGlow)"/><path d="M979 623q-42 13-75-10" fill="none" stroke="#B8754F" stroke-width="16" stroke-linecap="round"/><ellipse cx="1010" cy="624" rx="69" ry="46" fill="#E0A66F" stroke="#3A2C22" stroke-opacity=".25" stroke-width="4"/><ellipse cx="1014" cy="566" rx="57" ry="51" fill="#E7B77F" stroke="#3A2C22" stroke-opacity=".25" stroke-width="4"/><path d="M976 535q-35-27-39 18t30 35M1051 535q35-27 39 18t-30 35" fill="#B8754F" stroke="#3A2C22" stroke-opacity=".25" stroke-width="4"/><circle cx="995" cy="563" r="6" fill="#3A2C22"/><circle cx="1035" cy="563" r="6" fill="#3A2C22"/><ellipse cx="1015" cy="583" rx="10" ry="7" fill="#3A2C22"/><path d="M1009 593q7 7 14 0" fill="none" stroke="#3A2C22" stroke-width="4" stroke-linecap="round"/><path d="M1070 608q43-10 35-48" fill="none" stroke="#E0A66F" stroke-width="13" stroke-linecap="round"/></g>
-      </svg>
-    </div>
-  </section></main>
-  <div class="footer-meta">01 / 06</div><div class="progress" aria-hidden="true"><i></i></div>
+  <div class="brand">
+    <svg viewBox="0 0 24 24" width="27" height="27" aria-hidden="true">
+      <circle cx="12" cy="15" r="5" fill="#D9705C"/><circle cx="5.5" cy="8.5" r="2.2" fill="#D9705C"/><circle cx="18.5" cy="8.5" r="2.2" fill="#D9705C"/><circle cx="8.3" cy="4.6" r="2" fill="#D9705C"/><circle cx="15.7" cy="4.6" r="2" fill="#D9705C"/>
+    </svg>
+    <span>Paws &amp; Pause</span>
+  </div>
+
+  <main class="slide">
+    <section class="copy">
+      <div class="eyebrow">Cozy Life Sim · Pitch Reel</div>
+      <h1>Paws <span class="amp">&amp;</span><br/>Pause</h1>
+      <p class="subtitle">A child, a small town, and one very big dream: a puppy of their own.</p>
+    </section>
+
+    <section class="visual" aria-label="A child and puppy sharing a moment in a small friendly town">
+      <div class="vignette">
+        <svg viewBox="0 0 700 620" role="img" aria-label="Cozy illustrated town with a child reaching toward a puppy">
+          <defs>
+            <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#D9EBE5"/><stop offset="1" stop-color="#B9D7CF"/></linearGradient>
+            <linearGradient id="ground" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#E8C987"/><stop offset="1" stop-color="#D9AF64"/></linearGradient>
+          </defs>
+          <path d="M105 446 Q130 286 350 278 Q565 286 598 446Z" fill="url(#sky)"/>
+          <circle cx="505" cy="143" r="39" fill="#F4C56E" opacity=".9"/>
+          <path d="M125 388 Q164 337 204 370 Q246 314 300 365 Q348 322 405 365 Q455 315 526 372 Q564 343 590 388 L590 473 L125 473Z" fill="#78A69A"/>
+          <path d="M72 449 Q350 392 628 449 L628 560 L72 560Z" fill="url(#ground)"/>
+          <path d="M305 560 Q348 488 387 426 Q425 486 461 560Z" fill="#F1D59C" opacity=".9"/>
+          <!-- simplified town homes -->
+          <g stroke="#244C46" stroke-width="3.5" stroke-linejoin="round">
+            <path d="M120 394 L120 313 L195 252 L270 313 L270 394Z" fill="#F3D6A0"/>
+            <path d="M105 317 L195 241 L285 317" fill="#D9705C"/>
+            <rect x="145" y="330" width="31" height="35" rx="3" fill="#B9D7CF"/><rect x="211" y="330" width="31" height="35" rx="3" fill="#B9D7CF"/>
+            <path d="M470 394 L470 319 L525 277 L580 319 L580 394Z" fill="#D9E5C8"/>
+            <path d="M458 322 L525 267 L592 322" fill="#D98F2B"/>
+            <rect x="496" y="333" width="29" height="34" rx="3" fill="#B9D7CF"/>
+          </g>
+          <!-- child, leaning toward the puppy -->
+          <g stroke="#244C46" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="334" cy="346" r="27" fill="#F2BC91"/>
+            <path d="M307 341 Q312 302 349 311 Q367 316 362 345 Q347 328 307 341Z" fill="#6A4937"/>
+            <path d="M313 382 Q340 361 366 382 L379 463 L301 463Z" fill="#3E7C74"/>
+            <path d="M318 461 L310 512 M364 461 L371 512" fill="none"/>
+            <path d="M308 512 L292 517 M372 512 L388 517" fill="none"/>
+            <path d="M310 397 L276 424 M368 397 L407 425" fill="none"/>
+            <circle cx="410" cy="427" r="8" fill="#D98F2B"/>
+          </g>
+          <!-- puppy close to the child, sharing a toy -->
+          <g stroke="#244C46" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M401 483 Q393 432 423 412 Q463 387 501 417 Q520 436 512 483Z" fill="#C98955"/>
+            <path d="M424 420 Q398 406 405 378 Q428 384 444 402 M490 416 Q520 398 524 374 Q500 378 483 400" fill="#A66B43"/>
+            <circle cx="452" cy="432" r="4" fill="#244C46"/><circle cx="483" cy="432" r="4" fill="#244C46"/>
+            <path d="M462 447 Q470 454 478 447" fill="none"/>
+            <path d="M506 451 Q539 436 541 405" fill="none"/>
+            <path d="M422 482 L416 515 M496 482 L504 515" fill="none"/>
+            <path d="M412 515 L402 518 M504 515 L517 518" fill="none"/>
+            <path d="M407 426 Q401 426 394 428" fill="none" stroke="#D98F2B" stroke-width="4"/>
+          </g>
+          <!-- shared toy and small organic details -->
+          <path d="M394 427 Q402 427 410 427" fill="none" stroke="#D98F2B" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="391" cy="427" r="7" fill="#D9705C" stroke="#244C46" stroke-width="3"/>
+          <path d="M171 494 Q188 465 205 494 Q221 466 239 494" fill="none" stroke="#3E7C74" stroke-width="6" stroke-linecap="round"/>
+          <path d="M558 489 Q573 458 588 489 Q604 462 617 491" fill="none" stroke="#3E7C74" stroke-width="6" stroke-linecap="round"/>
+          <g fill="#F4C56E"><circle cx="143" cy="466" r="7"/><circle cx="253" cy="510" r="6"/><circle cx="579" cy="438" r="7"/></g>
+          <!-- handwritten visual caption integrated into the scene -->
+          <g transform="translate(500 192) rotate(5)">
+            <path d="M0 0 Q38 -10 82 0 L78 43 Q38 51 -4 42Z" fill="#F5E9D3" stroke="#3E7C74" stroke-width="3"/>
+            <text x="9" y="18" font-family="Nunito, sans-serif" font-size="12" font-weight="800" fill="#D9705C">ONE BIG</text>
+            <text x="9" y="34" font-family="Nunito, sans-serif" font-size="12" font-weight="800" fill="#3E7C74">DREAM</text>
+          </g>
+        </svg>
+        <svg class="paw one" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></svg>
+        <svg class="paw two" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></svg>
+        <svg class="paw three" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></svg>
+        <svg class="paw four" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></svg>
+        <svg class="paw five" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="5"/><circle cx="5.5" cy="8.5" r="2.2"/><circle cx="18.5" cy="8.5" r="2.2"/><circle cx="8.3" cy="4.6" r="2"/><circle cx="15.7" cy="4.6" r="2"/></svg>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-meta">01 / 06</div>
+  <div class="progress" aria-hidden="true"><i></i></div>
 </body>
 </html>
